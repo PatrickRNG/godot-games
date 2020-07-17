@@ -1,0 +1,441 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://audio/gunshot2.wav" type="AudioStream" id=3]
+[ext_resource path="res://audio/footstep2.wav" type="AudioStream" id=4]
+[ext_resource path="res://audio/pain2.wav" type="AudioStream" id=5]
+[ext_resource path="res://audio/reload.wav" type="AudioStream" id=6]
+[ext_resource path="res://audio/eat.wav" type="AudioStream" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8, 7 )
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "reload"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Gun/Graphics:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -2.06818, 4.57507 ), Vector2( -2.14876, 6.55372 ), Vector2( -2.06818, 4.57507 ), Vector2( -4.93858, -3.52219 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Gun/Graphics:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -59.8897, -60.2016, -59.8897, 43.3649, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Gun/Graphics:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 22.0907
+
+[node name="Player" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="Graphics" type="Node2D" parent="." index="0"]
+
+editor/display_folded = true
+
+[node name="Sprite" type="Sprite" parent="Graphics" index="0"]
+
+visible = false
+texture = ExtResource( 2 )
+
+[node name="Coat" type="Polygon2D" parent="Graphics" index="1"]
+
+position = Vector2( 0, -12 )
+polygon = PoolVector2Array( 8, -11, 1.04084, -12, -8, -12, -8, 12, 8, 12 )
+uv = PoolVector2Array(  )
+color = Color( 0.148438, 0.148438, 0.148438, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Scarf" type="Polygon2D" parent="Graphics" index="2"]
+
+position = Vector2( 0, -12 )
+polygon = PoolVector2Array( -4, -12, -4, 12, 0, 12, 0, -8, 4, -8, 4, -12 )
+uv = PoolVector2Array(  )
+color = Color( 0.160396, 0.144196, 0.351562, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Face" type="Polygon2D" parent="Graphics" index="3"]
+
+position = Vector2( 0, -12 )
+polygon = PoolVector2Array( -4, -10, 1, -10, 1, -14, -4, -14 )
+uv = PoolVector2Array(  )
+color = Color( 0.75, 0.521484, 0.521484, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Hat" type="Polygon2D" parent="Graphics" index="4"]
+
+position = Vector2( 0, -12 )
+polygon = PoolVector2Array( -5, -17, 2, -17, 2, -14, 3, -14, 3, -9, 0, -9, 0, -13, -5, -13 )
+uv = PoolVector2Array(  )
+color = Color( 0.0742188, 0.0171051, 0.0171051, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Beard" type="Polygon2D" parent="Graphics" index="5"]
+
+position = Vector2( 0, -12 )
+polygon = PoolVector2Array( 0, -11, -5, -11, -5, -8, -1, -8, -1, -9, 0, -9 )
+uv = PoolVector2Array(  )
+color = Color( 0.15625, 0.0952148, 0.0952148, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Gun" type="Node2D" parent="." index="1"]
+
+position = Vector2( 0, -14 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Sprite" type="Sprite" parent="Gun" index="0"]
+
+visible = false
+position = Vector2( 30.2602, -0.536377 )
+scale = Vector2( 1, 0.126647 )
+texture = ExtResource( 2 )
+
+[node name="Graphics" type="Node2D" parent="Gun" index="1"]
+
+editor/display_folded = true
+scale = Vector2( -1, 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Gun" type="Polygon2D" parent="Gun/Graphics" index="0"]
+
+position = Vector2( -2, -0.533367 )
+polygon = PoolVector2Array( 0, 0, -20, 0, -20, 1, -17, 1, -15, 2, 0, 2 )
+uv = PoolVector2Array(  )
+color = Color( 0.269531, 0.156876, 0.156876, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Hand" type="Polygon2D" parent="Gun/Graphics" index="1"]
+
+position = Vector2( -2.87533, 0.802659 )
+rotation = -0.474008
+polygon = PoolVector2Array( 2, -1, -2, -1, -2, 2, 2, 2 )
+uv = PoolVector2Array(  )
+color = Color( 0.101562, 0.0579224, 0.0579224, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="FirePoint" type="Position2D" parent="Gun" index="2"]
+
+position = Vector2( 28, -1 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Gun" index="3"]
+
+position = Vector2( -1, 0 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 20000, 0 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+position = Vector2( 0, -7 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+
+[node name="LStep" type="Position2D" parent="." index="4"]
+
+position = Vector2( 5, 0 )
+
+[node name="RStep" type="Position2D" parent="." index="5"]
+
+position = Vector2( -4, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/reload = SubResource( 3 )
+blend_times = [  ]
+
+[node name="GunShotPlayer" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="StepPlayer" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 4 )
+volume_db = -30.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="PainPlayer" type="AudioStreamPlayer" parent="." index="9"]
+
+stream = ExtResource( 5 )
+volume_db = -10.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="ReloadPlayer" type="AudioStreamPlayer" parent="." index="10"]
+
+stream = ExtResource( 6 )
+volume_db = -30.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="EatPlayer" type="AudioStreamPlayer" parent="." index="11"]
+
+stream = ExtResource( 7 )
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="12"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Panel" type="Panel" parent="CanvasLayer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 103.0
+margin_bottom = 105.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Label" type="Label" parent="CanvasLayer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 62.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Health
+Hunger: 
+Food: 
+Ammo: 
+Days: "
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DeathMessage" type="Control" parent="CanvasLayer" index="2"]
+
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DeathMessage" index="0"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -174.0
+margin_top = -6.0
+margin_right = 184.0
+margin_bottom = 57.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="Label" type="Label" parent="CanvasLayer/DeathMessage" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -166.0
+margin_right = 169.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "You died, your family is doomed to starve to death...
+
+press 'R' to restart"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="FeedArea" type="Area2D" parent="." index="13"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+collision_mask = 32
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FeedArea" index="0"]
+
+shape = SubResource( 4 )
+
+

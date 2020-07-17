@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 11.1803
+
+[node name="Tree" type="StaticBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( 0, -10 )
+shape = SubResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="1"]
+
+polygon = PoolVector2Array( 18, -6, 12, -2, 0, 0, -12, -2, -19, -6, -16, -12, -15, -19, -9, -30, -11, -31, -6, -46, -3, -64, 0, -80, 5, -53, 10.7655, -35.7419, 11, -32 )
+uv = PoolVector2Array(  )
+color = Color( 0.0708008, 0.125, 0.113567, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Polygon2D2" type="Polygon2D" parent="." index="2"]
+
+visible = false
+polygon = PoolVector2Array( 18, -8, 12, -2, -1, -4, -11, -9, -19, -6, -15, -18, -3, -21, -3, -31, -9.00001, -30, -11, -31, -3, -52, -1, -63, -3, -64, 0, -80, 2, -69, 3, -54, 2, -44, 8, -42, 11, -35, 7, -31, 6, -20 )
+uv = PoolVector2Array(  )
+color = Color( 0.775269, 0.855469, 0.838552, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+

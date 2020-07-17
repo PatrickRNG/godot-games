@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Dog.gd" type="Script" id=1]
+[ext_resource path="res://graphics/AnimalGraphics.tscn" type="PackedScene" id=2]
+[ext_resource path="res://graphics/Wolf.tscn" type="PackedScene" id=3]
+[ext_resource path="res://DetectionArea.tscn" type="PackedScene" id=4]
+[ext_resource path="res://audio/yelp1.wav" type="AudioStream" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 12.1655
+
+[node name="Wolf" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 17
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+role = "predator"
+move_speed = 250
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( 0, -2 )
+shape = SubResource( 1 )
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="1"]
+
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 50 )
+collision_mask = 1
+
+[node name="AnimalGraphics" parent="." index="2" instance=ExtResource( 2 )]
+
+[node name="Graphics2" parent="AnimalGraphics" index="2" instance=ExtResource( 3 )]
+
+[node name="DetectionArea" parent="." index="3" instance=ExtResource( 4 )]
+
+visible = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+

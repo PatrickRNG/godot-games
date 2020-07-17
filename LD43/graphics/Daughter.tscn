@@ -1,0 +1,68 @@
+[gd_scene format=2]
+
+[node name="Daughter" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="0"]
+
+polygon = PoolVector2Array( 8, 0, 3, -9, -1, -9, -5, 0 )
+uv = PoolVector2Array(  )
+color = Color( 0.14902, 0.14902, 0.14902, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Polygon2D4" type="Polygon2D" parent="." index="1"]
+
+position = Vector2( 0, 6 )
+polygon = PoolVector2Array( -3, -15, -2, -12, 0, -10, 0, -6, 2, -6, 2, -10, 2, -12, 4, -13, 4, -15 )
+uv = PoolVector2Array(  )
+color = Color( 0.160784, 0.141176, 0.352941, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Polygon2D2" type="Polygon2D" parent="." index="2"]
+
+position = Vector2( 0, 6 )
+polygon = PoolVector2Array( -2, -17, -1, -14, 1, -14, 2, -17 )
+uv = PoolVector2Array(  )
+color = Color( 0.74902, 0.521569, 0.521569, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Polygon2D3" type="Polygon2D" parent="." index="3"]
+
+position = Vector2( 1, 7 )
+polygon = PoolVector2Array( -1, -18, -4, -18, -3, -19, -2, -21, 1, -20, 2, -18, 3, -16, 2, -15 )
+uv = PoolVector2Array(  )
+color = Color( 0.222656, 0.00434875, 0.00434875, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+
