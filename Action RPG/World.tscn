@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Bush.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Enemies/Bat.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/Tree.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=10]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -490,7 +491,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 position = Vector2( 160, 90 )
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 320, 180 )
+region_rect = Rect2( 0, 0, 626.994, 406.483 )
 
 [node name="DirtPathTilemap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -505,10 +506,19 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 2, -65528, 0, 0, -65527, 0, 1, -65526, 0, 2, 65535, 0, 65536, 0, 0, 65541, 1, 0, 131073, 2, 0, 131073, 3, 0, 131073, 4, 0, 131074, 8, 0, 131072, 9, 0, 65544, 10, 0, 131074, 131071, 0, 131072, 65536, 0, 131074, 65545, 0, 131075, 196612, 0, 3, 196617, 0, 0, 196618, 0, 2, 262144, 0, 0, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 131079, 262152, 0, 0, 262153, 0, 131078, 262154, 0, 65538, 327680, 0, 131072, 327681, 0, 131073, 327682, 0, 131073, 327683, 0, 131073, 327684, 0, 131074, 327688, 0, 131072, 327689, 0, 131073, 327690, 0, 131074 )
 
+[node name="Camera2D" parent="." instance=ExtResource( 10 )]
+position = Vector2( 152, 88 )
+
+[node name="TopLeft" parent="Camera2D/Limits" index="0"]
+position = Vector2( -64, -64 )
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 152, 88 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
+remote_path = NodePath("../../../Camera2D")
 
 [node name="Bushes" type="YSort" parent="YSort"]
 
@@ -553,7 +563,7 @@ position = Vector2( 232, 24 )
 position = Vector2( 104, 160 )
 
 [node name="Bat" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 184, 32 )
+position = Vector2( 211.172, 6.16394 )
 
 [node name="Bat3" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 240, 152 )
@@ -561,18 +571,12 @@ position = Vector2( 240, 152 )
 [node name="Bat2" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 40, 88 )
 
-[node name="HealthUI" parent="." instance=ExtResource( 8 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HeartUIEmpty" parent="HealthUI" index="0"]
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 60.0
-margin_bottom = 14.0
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 8 )]
+margin_left = 3.63917
+margin_top = 3.648
+margin_right = 43.6392
+margin_bottom = 43.648
 
-[node name="HeartUIFull" parent="HealthUI" index="1"]
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 47.0
-margin_bottom = 14.0
-
-[editable path="HealthUI"]
+[editable path="Camera2D"]

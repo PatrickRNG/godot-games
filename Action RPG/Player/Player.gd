@@ -21,8 +21,11 @@ onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitbox = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
+onready var audioStream = $AudioStreamPlayer
+onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
+	randomize()
 #	[object that have signal].connect("signal_name", object_that_have_function, "function")
 	stats.connect("no_health", self, "queue_free")
 	animationTree.active = true
@@ -74,18 +77,42 @@ func roll_state():
 func attack_state():
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
-	
+
 func move():
 	move_and_slide(velocity)
-	
+
 func roll_animation_finished():
 	velocity = velocity * 0.8
 	state = MOVE
-	
+
 func attack_animation_finish():
 	state = MOVE
 
+func play_attack_audio():
+	var stream = load("res://Music and Sounds/Swipe.wav")
+	audioStream.set_stream(stream)
+	audioStream.volume_db = -15
+	audioStream.pitch_scale = 1
+	audioStream.play()
+
+func play_hurt_audio():
+	var stream = load("res://Music and Sounds/Hurt.wav")
+	audioStream.set_stream(stream)
+	audioStream.volume_db = -15
+	audioStream.pitch_scale = 1
+	audioStream.play()
+
 func _on_Hurtbox_area_entered(area):
-	stats.health -= 1
-	hurtbox.start_invincibility(0.5)
-	hurtbox.create_hit_effect(area)
+	if not hurtbox.invincible:
+		stats.health -= area.damage
+		hurtbox.start_invincibility(0.5)
+		hurtbox.create_hit_effect(area)
+		play_hurt_audio()
+
+
+func _on_Hurtbox_invincibility_started():
+	blinkAnimationPlayer.play("Start")
+
+func _on_Hurtbox_invincibility_ended():
+	blinkAnimationPlayer.play("Stop")
+
