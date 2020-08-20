@@ -109,7 +109,6 @@ func _on_Hurtbox_area_entered(area):
 		hurtbox.create_hit_effect(area)
 		play_hurt_audio()
 
-
 func _on_Hurtbox_invincibility_started():
 	blinkAnimationPlayer.play("Start")
 

@@ -91,10 +91,8 @@ func _on_Stats_no_health():
 #	Position the effect on top of the bat
 	enemyDeathEffect.set_offset(Vector2(0,-12))
 
-
 func _on_Hurtbox_invincibility_started():
 	animationPlayer.play("Start")
-
 
 func _on_Hurtbox_invincibility_ended():
 	animationPlayer.play("Stop")

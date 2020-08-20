@@ -18,7 +18,6 @@ screen_shake = 100
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-visible = false
 shape = SubResource( 1 )
 
 [node name="Stun_timer" type="Timer" parent="."]

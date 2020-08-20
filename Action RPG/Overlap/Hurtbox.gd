@@ -18,7 +18,7 @@ func set_invincible(value):
 
 func start_invincibility(duration):
 	self.invincible = true
-	timer.start(duration) 
+	timer.start(duration)
 
 func create_hit_effect(area):
 	var effect = HitEffect.instance()
