@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Items/Sprites/Square.png" type="Texture" id=1]
+[ext_resource path="res://Items/PowerUp.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.03444, 8.01897 )
+
+[node name="PierceUp" type="Sprite"]
+modulate = Color( 0.784314, 0.376471, 0.827451, 1 )
+rotation = 0.785398
+scale = Vector2( 0.31499, 0.31499 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+player_stat_name = "pierce"
+player_stat_value = 1.0
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+shape = SubResource( 1 )
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]

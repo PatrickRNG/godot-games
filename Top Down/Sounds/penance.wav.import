@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/penance.wav-6ee8ce1a91964cb0e5581828d50d6bfd.sample"
+
+[deps]
+
+source_file="res://Sounds/penance.wav"
+dest_files=[ "res://.import/penance.wav-6ee8ce1a91964cb0e5581828d50d6bfd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
