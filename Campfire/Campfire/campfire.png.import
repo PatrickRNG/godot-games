@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/campfire.png-9f7ca8200c4f1e677c26e3dd4ebf4300.image"
+
+[deps]
+
+source_file="res://Campfire/campfire.png"
+dest_files=[ "res://.import/campfire.png-9f7ca8200c4f1e677c26e3dd4ebf4300.image" ]
+
+[params]
+
