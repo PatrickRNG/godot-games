@@ -2,11 +2,8 @@ extends StaticBody2D
 
 onready var campfireHealth = $Health
 
-func _on_Area2D_body_entered(body):
+func _on_Area2D_area_entered(area):
 	# Grab wood from player
-	if body.is_in_group('player'):
-		var wood = body.wood
-		campfireHealth.current += wood
-		body.wood -= wood
-		
-	
+	var player = area.get_parent()
+	campfireHealth.current += player.wood
+	player.wood = 0

@@ -1,7 +1,7 @@
 extends Sprite
 
-func _on_Area2D_body_entered(body):
+func _on_Hurtbox_area_entered(area):
 	# Grab wood from player
-	if body.is_in_group('player'):
-		body.wood += 2
-		queue_free()
+	var player = area.get_parent()
+	player.wood += 2
+	queue_free()
