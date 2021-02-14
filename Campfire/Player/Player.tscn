@@ -16,8 +16,8 @@ image = SubResource( 5 )
 size = Vector2( 200, 200 )
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 10.3338
-height = 9.28715
+radius = 8.68729
+height = 8.61143
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 10.3842
@@ -44,6 +44,7 @@ shape = SubResource( 3 )
 [node name="Hitbox" type="Area2D" parent="." groups=[
 "player",
 ]]
+visible = false
 collision_layer = 0
 collision_mask = 4
 
