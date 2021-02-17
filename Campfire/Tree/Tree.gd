@@ -2,6 +2,8 @@ extends Node2D
 
 signal can_cut_tree(can_cut)
 
+var cutted = false
+
 func _on_Area2D_area_entered(area):
 	var player = area.get_parent()
 	connect("can_cut_tree", player, "toggle_cut_tree")

@@ -67,6 +67,7 @@ radius = 23.2443
 [node name="Tree" type="StaticBody2D" groups=[
 "tree",
 ]]
+scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

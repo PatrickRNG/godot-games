@@ -95,7 +95,7 @@ position = Vector2( 92.7151, 430.098 )
 [node name="Campfire" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 523.199, 305.219 )
 
-[node name="TileMap" type="TileMap" parent="YSort"]
+[node name="Grass" type="TileMap" parent="YSort"]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1

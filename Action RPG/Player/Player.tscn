@@ -12,7 +12,7 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 9 )
-shader_param/active = true
+shader_param/active = false
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.0
@@ -693,7 +693,7 @@ states/Run/node = SubResource( 40 )
 states/Run/position = Vector2( 633, 41.6667 )
 transitions = [ "Idle", "Run", SubResource( 41 ), "Run", "Idle", SubResource( 42 ), "Idle", "Attack", SubResource( 43 ), "Attack", "Idle", SubResource( 44 ), "Roll", "Idle", SubResource( 45 ), "Idle", "Roll", SubResource( 46 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -10, -120 )
+graph_offset = Vector2( -20, -153 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=48]
 
@@ -717,7 +717,7 @@ material = SubResource( 1 )
 position = Vector2( 0, -9 )
 texture = ExtResource( 2 )
 hframes = 60
-frame = 36
+frame = 34
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
@@ -748,15 +748,16 @@ anims/Stop = SubResource( 20 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 47 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 48 )
-parameters/Attack/blend_position = Vector2( -0.000602424, -0.0165662 )
-parameters/Idle/blend_position = Vector2( 0, 0 )
+parameters/Attack/blend_position = Vector2( -0.386891, 0.00811207 )
+parameters/Idle/blend_position = Vector2( -0.324246, 0.337758 )
 parameters/Roll/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( -0.000602424, -0.00932837 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
 position = Vector2( 0, -4 )
-rotation = 1.5708
+rotation = 3.14159
 
 [node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource( 3 )]
 position = Vector2( 16, 0 )
@@ -766,6 +767,7 @@ script = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
 shape = SubResource( 49 )
+disabled = true
 
 [node name="Hurtbox" parent="." instance=ExtResource( 5 )]
 collision_layer = 4
