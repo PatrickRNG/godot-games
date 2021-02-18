@@ -93,7 +93,7 @@ position = Vector2( 189.037, 346.846 )
 position = Vector2( 92.7151, 430.098 )
 
 [node name="Campfire" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 523.199, 305.219 )
+position = Vector2( 508.945, 296.31 )
 
 [node name="Grass" type="TileMap" parent="YSort"]
 tile_set = SubResource( 1 )

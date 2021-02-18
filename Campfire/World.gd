@@ -2,7 +2,7 @@ extends Node2D
 
 onready var campfireHealth = $YSort/Campfire/Health
 onready var world = $YSort
-onready var tree = preload("res://Tree/Tree.tscn")
+onready var tree = preload("res://Tree/Tree.tscn").duplicate()
 
 export(int) var tree_spawn_count = 10
 
@@ -19,7 +19,6 @@ func spawn_trees():
 		var tree_instance = tree.instance()
 		world.add_child(tree_instance)
 		tree_instance.position = tree_position
-		Manager.trees.append(tree_instance)
 
 func _on_Timer_timeout():
 	campfireHealth.current -= 1

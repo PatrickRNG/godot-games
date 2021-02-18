@@ -1,13 +1,22 @@
 extends Node2D
 
-signal can_cut_tree(can_cut)
+signal cut_tree
 
-var cutted = false
+var is_cut = false
 
-func _on_Area2D_area_entered(area):
-	var player = area.get_parent()
-	connect("can_cut_tree", player, "toggle_cut_tree")
-	emit_signal("can_cut_tree", true, self)
+onready var health = 5 setget damage_tree
+onready var cutdown_tree_texture
 
-func _on_Area2D_area_exited(area):
-	emit_signal("can_cut_tree", false, null)
+func damage_tree(new_health: int):
+	health = new_health
+	if (health <= 0):
+		is_cut = true
+		$Sprite.position = Vector2(0, -33.001)
+		$Sprite.texture.region = Rect2(10, 260, 40, 30)
+		
+
+# Player axe hitbox entered tree
+func _on_Hurtbox_area_entered(area):
+#	var player = area.get_parent()
+	if (!is_cut):
+		self.health -= 1

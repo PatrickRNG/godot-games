@@ -1,13 +1,40 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://top_down_forest.png" type="Texture" id=1]
-[ext_resource path="res://Tree/Tree.gd" type="Script" id=2]
+[ext_resource path="res://Health/Health.tscn" type="PackedScene" id=3]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 160, 60, 100 )
+[sub_resource type="GDScript" id=8]
+script/source = "extends Node2D
 
-[sub_resource type="Animation" id=2]
+signal cut_tree
+
+var is_cut = false
+var tree_full_rect = Rect2(0, 159, 60, 100)
+var tree_cut_rect = Rect2(10, 260, 40, 30)
+
+onready var health = 5 setget damage_tree
+onready var cutdown_tree_texture
+
+func _ready():
+	$Sprite.set_region_rect(tree_full_rect)
+	$Sprite.set_position(Vector2(0, -34))
+
+func damage_tree(new_health: int):
+	health = new_health
+	if (health <= 0):
+		is_cut = true
+		$Sprite.set_position(Vector2(0, 0))
+		$Sprite.set_region_rect(tree_cut_rect)
+		
+
+# Player axe hitbox entered tree
+func _on_Hurtbox_area_entered(area):
+#	var player = area.get_parent()
+	if (!is_cut):
+		self.health -= 1
+"
+
+[sub_resource type="Animation" id=5]
 resource_name = "Cut"
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Tree/Sprite:texture:region")
@@ -34,7 +61,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=6]
 resource_name = "Idle"
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Tree/Sprite:texture:region")
@@ -62,17 +89,19 @@ tracks/1/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 23.2443
+radius = 15.448
 
 [node name="Tree" type="StaticBody2D" groups=[
 "tree",
 ]]
 scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
+script = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -33.001 )
-texture = SubResource( 1 )
+position = Vector2( 1.414, -34 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 159, 60, 100 )
 
 [node name="CollisionTree" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -81,16 +110,18 @@ scale = Vector2( 1.44, 1.32 )
 polygon = PoolVector2Array( -9.78992, 2.52741, -5.57987, -3.4296, 6.27052, -3.4296, 10.7275, 2.34141, 1.36311, 9.86132, -1.49824, 9.43567 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Cut = SubResource( 2 )
-anims/Idle = SubResource( 3 )
+anims/Cut = SubResource( 5 )
+anims/Idle = SubResource( 6 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2( 1.23112, -0.410385 )
 rotation = -1.5708
 shape = SubResource( 4 )
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+
+[node name="Health" parent="." instance=ExtResource( 3 )]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

@@ -10,10 +10,10 @@ radius = 8.68729
 height = 8.61143
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 4.77555
-height = 12.1307
+radius = 2.60797
+height = 11.6126
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "Attack"
 length = 0.5
 tracks/0/type = "value"
@@ -90,8 +90,20 @@ tracks/5/keys = {
 "method": "finished_attack"
 } ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "Idle"
 length = 0.9
 loop = true
@@ -156,7 +168,7 @@ tracks/4/keys = {
 "values": [ 1.0 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 resource_name = "Walk"
 length = 0.6
 loop = true
@@ -221,36 +233,36 @@ tracks/4/keys = {
 "values": [ 0.8 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=33]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "Attack"
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=29]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id=27]
-states/Attack/node = SubResource( 33 )
+[sub_resource type="AnimationNodeStateMachine" id=13]
+states/Attack/node = SubResource( 6 )
 states/Attack/position = Vector2( 370.333, -26 )
-states/Idle/node = SubResource( 30 )
+states/Idle/node = SubResource( 7 )
 states/Idle/position = Vector2( 369, 112.222 )
-states/Walk/node = SubResource( 29 )
+states/Walk/node = SubResource( 8 )
 states/Walk/position = Vector2( 576.333, 111.666 )
-transitions = [ "Idle", "Walk", SubResource( 31 ), "Walk", "Idle", SubResource( 32 ), "Idle", "Attack", SubResource( 34 ), "Attack", "Idle", SubResource( 35 ) ]
+transitions = [ "Idle", "Walk", SubResource( 9 ), "Walk", "Idle", SubResource( 10 ), "Idle", "Attack", SubResource( 11 ), "Attack", "Idle", SubResource( 12 ) ]
 start_node = "Idle"
 graph_offset = Vector2( -21, -107 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -263,8 +275,8 @@ speed = 100
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.678431, 0.678431, 0.678431, 1 )
 position = Vector2( 11.4968, -5.82713 )
-texture = ExtResource( 2 )
-hframes = 4
+texture = ExtResource( 4 )
+hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 3.82402, 3.56359 )
@@ -277,16 +289,16 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2( 3.82402, 3.9446 )
+position = Vector2( 24.429, 4.66643 )
+rotation = 1.57079
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Attack = SubResource( 4 )
-anims/Idle = SubResource( 6 )
-anims/Walk = SubResource( 8 )
+anims/Attack = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/Walk = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 27 )
+tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource( 28 )
+parameters/playback = SubResource( 14 )

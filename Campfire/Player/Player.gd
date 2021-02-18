@@ -6,29 +6,37 @@ enum {
 }
 
 var velocity = Vector2.ZERO
-var can_cut_tree: bool = false
 var current_active_tree
 var facing_left = false
 var is_attacking = false
+var can_attack = true
 var state = MOVE
+
+signal cut_tree
 
 export(int) var speed = 80
 export(int) var wood = 0
 
 onready var animationTree = $AnimationTree
+onready var hitbox = $Hitbox/CollisionShape2D
 onready var animationState = animationTree.get("parameters/playback")
 
 func _ready():
 	animationTree.active = true
+	hitbox.disabled = true
 	var campfire_health_node = get_node("../Campfire/Health")
 	campfire_health_node.connect("depleted", self, "handle_player_die")
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("ui_action"):
+		state = ATTACK
+	
 	match state:
 		MOVE:
 			move_state(delta)
 		ATTACK:
-			attack_state()
+			if can_attack:
+				attack_state()
 	
 func move_state(_delta) -> void:
 	var input_vector = Vector2.ZERO
@@ -51,9 +59,6 @@ func move_state(_delta) -> void:
 		velocity = Vector2.ZERO
 
 	move_and_slide(velocity)
-	
-	if Input.is_action_just_pressed("ui_action"):
-		state = ATTACK
 
 func flip():
 	scale.x *= -1
@@ -61,22 +66,18 @@ func flip():
 
 func finished_attack():
 	state = MOVE
+	hitbox.disabled = true
 
 func handle_player_die():
 	queue_free()
 
-# Triggered after entering/leaving tree radius
-func toggle_cut_tree(can_cut, tree) -> void:
-	can_cut_tree = can_cut
-	current_active_tree = tree
-
 func attack_state():
+	print_debug(">>> test")
 	is_attacking = true
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
-	if can_cut_tree and current_active_tree.cutted == false:
-		cut_tree()
-
-func cut_tree():
-	current_active_tree.cutted = true
-	print_debug("action clicked ", current_active_tree)
+	can_attack = false
+	var attack_rate = 1
+#	Wait some time before able to fire, (receive timeout signal after completion)
+	yield(get_tree().create_timer(attack_rate), "timeout")
+	can_attack = true
