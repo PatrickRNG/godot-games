@@ -1,120 +1,43 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://top_down_forest.png" type="Texture" id=1]
+[ext_resource path="res://Tree/Tree.gd" type="Script" id=2]
 [ext_resource path="res://Health/Health.tscn" type="PackedScene" id=3]
 
-[sub_resource type="GDScript" id=8]
-script/source = "extends Node2D
-
-signal cut_tree
-
-var is_cut = false
-var tree_full_rect = Rect2(0, 159, 60, 100)
-var tree_cut_rect = Rect2(10, 260, 40, 30)
-
-onready var health = 5 setget damage_tree
-onready var cutdown_tree_texture
-
-func _ready():
-	$Sprite.set_region_rect(tree_full_rect)
-	$Sprite.set_position(Vector2(0, -34))
-
-func damage_tree(new_health: int):
-	health = new_health
-	if (health <= 0):
-		is_cut = true
-		$Sprite.set_position(Vector2(0, 0))
-		$Sprite.set_region_rect(tree_cut_rect)
-		
-
-# Player axe hitbox entered tree
-func _on_Hurtbox_area_entered(area):
-#	var player = area.get_parent()
-	if (!is_cut):
-		self.health -= 1
-"
-
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 resource_name = "Cut"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Tree/Sprite:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 10, 260, 40, 30 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../Tree/Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 resource_name = "Idle"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Tree/Sprite:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 0, 160, 60, 100 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../Tree/Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -33.001 ) ]
-}
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 15.448
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 26.373
 
 [node name="Tree" type="StaticBody2D" groups=[
 "tree",
 ]]
 scale = Vector2( 2, 2 )
-script = SubResource( 8 )
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1.414, -34 )
 texture = ExtResource( 1 )
+offset = Vector2( 0.516235, -34.1471 )
 region_enabled = true
-region_rect = Rect2( 0, 159, 60, 100 )
+region_rect = Rect2( 0, 160, 60, 100 )
 
 [node name="CollisionTree" type="CollisionPolygon2D" parent="."]
-visible = false
 position = Vector2( 0.612782, -0.743069 )
 scale = Vector2( 1.44, 1.32 )
-polygon = PoolVector2Array( -9.78992, 2.52741, -5.57987, -3.4296, 6.27052, -3.4296, 10.7275, 2.34141, 1.36311, 9.86132, -1.49824, 9.43567 )
+polygon = PoolVector2Array( -10.9264, 2.62971, -5.57722, -3.65718, 6.27052, -3.4296, 11.0519, 2.78003, 1.36311, 9.86132, -1.49824, 9.43567 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Cut = SubResource( 5 )
-anims/Idle = SubResource( 6 )
+anims/Cut = SubResource( 2 )
+anims/Idle = SubResource( 3 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 4
 collision_mask = 0
 
@@ -124,4 +47,10 @@ rotation = -1.5708
 shape = SubResource( 4 )
 
 [node name="Health" parent="." instance=ExtResource( 3 )]
+
+[node name="SpawnArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2( 1.47157, -0.630676 )
+shape = SubResource( 5 )
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

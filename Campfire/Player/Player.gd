@@ -72,7 +72,6 @@ func handle_player_die():
 	queue_free()
 
 func attack_state():
-	print_debug(">>> test")
 	is_attacking = true
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")

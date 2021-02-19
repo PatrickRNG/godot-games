@@ -269,13 +269,15 @@ graph_offset = Vector2( -21, -107 )
 ]]
 scale = Vector2( 1.2, 1.2 )
 collision_layer = 2
+collision_mask = 25
 script = ExtResource( 1 )
 speed = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.678431, 0.678431, 0.678431, 1 )
-position = Vector2( 11.4968, -5.82713 )
+position = Vector2( 3.99044, 3.97231 )
 texture = ExtResource( 4 )
+offset = Vector2( 7.50636, -9.79944 )
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

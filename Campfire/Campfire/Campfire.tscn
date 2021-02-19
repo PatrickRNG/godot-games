@@ -18,7 +18,7 @@ image = SubResource( 7 )
 size = Vector2( 200, 200 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 15.3491
+radius = 13.876
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.180392, 0.180392, 0.180392, 1 )
@@ -43,7 +43,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 15.7765, 15.8218 )
+extents = Vector2( 16.6587, 16.5979 )
 
 [node name="Campfire" type="StaticBody2D"]
 position = Vector2( 4.56088, 1.03324 )
@@ -59,6 +59,7 @@ position = Vector2( -4.69786, -0.808472 )
 shape = SubResource( 3 )
 
 [node name="Health" parent="." instance=ExtResource( 1 )]
+max_amount = 50
 
 [node name="HealthBar" parent="." instance=ExtResource( 3 )]
 anchor_left = 0.5
@@ -72,14 +73,15 @@ margin_bottom = -23.1873
 custom_styles/fg = SubResource( 4 )
 custom_styles/bg = SubResource( 5 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2( -4.68221, -0.936443 )
-collision_layer = 4
+collision_layer = 12
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0, 0.18729 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2( 0, -0.022938 )
 shape = SubResource( 6 )
 [connection signal="changed" from="Health" to="HealthBar" method="set_value"]
 [connection signal="max_changed" from="Health" to="HealthBar" method="set_max"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]
