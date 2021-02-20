@@ -1,13 +1,17 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Woodcutter_idle.png" type="Texture" id=2]
 [ext_resource path="res://Player/Woodcutter_walk.png" type="Texture" id=3]
 [ext_resource path="res://Player/Woodcutter_attack2.png" type="Texture" id=4]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 8.68729
-height = 8.61143
+[sub_resource type="CapsuleShape2D" id=15]
+radius = 3.9885
+height = 10.4706
+
+[sub_resource type="CapsuleShape2D" id=16]
+radius = 2.58543
+height = 7.94681
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 2.60797
@@ -268,6 +272,7 @@ graph_offset = Vector2( -21, -107 )
 "player",
 ]]
 scale = Vector2( 1.2, 1.2 )
+z_index = 1
 collision_layer = 2
 collision_mask = 25
 script = ExtResource( 1 )
@@ -281,8 +286,13 @@ offset = Vector2( 7.50636, -9.79944 )
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 3.82402, 3.56359 )
-shape = SubResource( 1 )
+position = Vector2( 3.82401, 14.2036 )
+rotation = -1.57079
+shape = SubResource( 15 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 10.0209, 11.8651 )
+shape = SubResource( 16 )
 
 [node name="Hitbox" type="Area2D" parent="." groups=[
 "player",
@@ -304,3 +314,12 @@ anims/Walk = SubResource( 5 )
 tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 14 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = -1085
+limit_top = -766
+limit_right = 2172
+limit_bottom = 1306
+smoothing_enabled = true
+smoothing_speed = 6.0

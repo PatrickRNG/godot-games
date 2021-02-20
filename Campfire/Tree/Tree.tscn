@@ -4,53 +4,60 @@
 [ext_resource path="res://Tree/Tree.gd" type="Script" id=2]
 [ext_resource path="res://Health/Health.tscn" type="PackedScene" id=3]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Cut"
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Idle"
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 15.448
+[sub_resource type="CircleShape2D" id=3]
+radius = 14.5682
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=4]
 radius = 26.373
 
 [node name="Tree" type="StaticBody2D" groups=[
 "tree",
 ]]
+position = Vector2( 0, -2 )
 scale = Vector2( 2, 2 )
+z_index = 1
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 8 )
 texture = ExtResource( 1 )
-offset = Vector2( 0.516235, -34.1471 )
+offset = Vector2( 0.559276, -40.4155 )
 region_enabled = true
 region_rect = Rect2( 0, 160, 60, 100 )
 
 [node name="CollisionTree" type="CollisionPolygon2D" parent="."]
-position = Vector2( 0.612782, -0.743069 )
+position = Vector2( 0.770451, 0.728499 )
 scale = Vector2( 1.44, 1.32 )
-polygon = PoolVector2Array( -10.9264, 2.62971, -5.57722, -3.65718, 6.27052, -3.4296, 11.0519, 2.78003, 1.36311, 9.86132, -1.49824, 9.43567 )
+polygon = PoolVector2Array( -11.4327, 1.82125, -5.60881, -4.41274, 6.39435, -4.29343, 11.5313, 2.07121, 1.36311, 9.86132, -1.49824, 9.43567 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Cut = SubResource( 2 )
-anims/Idle = SubResource( 3 )
+anims/Cut = SubResource( 1 )
+anims/Idle = SubResource( 2 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2( -0.850431, 2.30387 )
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2( 1.23112, -0.410385 )
+position = Vector2( 2.43991, -2.3024 )
 rotation = -1.5708
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Health" parent="." instance=ExtResource( 3 )]
 
 [node name="SpawnArea" type="Area2D" parent="."]
+position = Vector2( -0.0726166, 2.36311 )
+collision_mask = 2147483649
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
 position = Vector2( 1.47157, -0.630676 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="area_entered" from="SpawnArea" to="." method="_on_SpawnArea_area_entered"]

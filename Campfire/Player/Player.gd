@@ -12,8 +12,6 @@ var is_attacking = false
 var can_attack = true
 var state = MOVE
 
-signal cut_tree
-
 export(int) var speed = 80
 export(int) var wood = 0
 

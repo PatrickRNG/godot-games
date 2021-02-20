@@ -1,11 +1,11 @@
 extends Node2D
 
-signal cut_tree
-
 var is_cut = false
 var tree_full_rect = Rect2(0, 160, 60, 100)
-var tree_cut_rect = Rect2(10, 260, 40, 30)
+var tree_cut_rect = Rect2(10, 262, 40, 30)
 var cut_down_wood = 0
+
+signal spawn_tree
 
 onready var wood_item = preload("res://Items/Wood_item.tscn")
 onready var spawn_area = $SpawnArea
@@ -17,14 +17,13 @@ var step = 2 * PI / 5
 
 func _ready():
 	$Sprite.set_region_rect(tree_full_rect)
-#	$Sprite.set_position(Vector2(0, -34))
 
 func damage_tree(new_health: int):
 	health = new_health
 	spawn_wood_item()
 	if (health <= 0):
 		is_cut = true
-		$Sprite.set_position(Vector2(0, 34))
+		$Sprite.set_position(Vector2(0, 43))
 		$Sprite.set_region_rect(tree_cut_rect)
 
 func spawn_wood_item():
@@ -42,3 +41,8 @@ func _on_Hurtbox_area_entered(area):
 	Manager.wood = player.wood
 	if (!is_cut):
 		self.health -= 1
+
+func _on_SpawnArea_area_entered(area):
+#	spawn tree again if overlap
+	emit_signal("spawn_tree")
+	area.get_parent().queue_free()
