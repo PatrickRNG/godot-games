@@ -5,7 +5,7 @@ var tree_full_rect = Rect2(0, 160, 60, 100)
 var tree_cut_rect = Rect2(10, 262, 40, 30)
 var cut_down_wood = 0
 
-signal spawn_tree
+signal change_tree_position
 
 onready var wood_item = preload("res://Items/Wood_item.tscn")
 onready var spawn_area = $SpawnArea
@@ -44,5 +44,5 @@ func _on_Hurtbox_area_entered(area):
 
 func _on_SpawnArea_area_entered(area):
 #	spawn tree again if overlap
-	emit_signal("spawn_tree")
-	area.get_parent().queue_free()
+	emit_signal("change_tree_position", area.get_parent())
+#	area.get_parent().queue_free()

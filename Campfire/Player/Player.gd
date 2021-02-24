@@ -15,6 +15,7 @@ var state = MOVE
 export(int) var speed = 80
 export(int) var wood = 0
 
+onready var camera = $Camera2D
 onready var animationTree = $AnimationTree
 onready var hitbox = $Hitbox/CollisionShape2D
 onready var animationState = animationTree.get("parameters/playback")
@@ -24,6 +25,7 @@ func _ready():
 	hitbox.disabled = true
 	var campfire_health_node = get_node("../Campfire/Health")
 	campfire_health_node.connect("depleted", self, "handle_player_die")
+	manage_camera()
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_action"):
@@ -78,3 +80,15 @@ func attack_state():
 #	Wait some time before able to fire, (receive timeout signal after completion)
 	yield(get_tree().create_timer(attack_rate), "timeout")
 	can_attack = true
+
+func manage_camera():
+	var pos_top_right = get_node("/root/World/Spawn_boundaries_top_right")
+	var pos_bottom_left = get_node("/root/World/Spawn_boundaries_bottom_left")
+	var boundaries_right = pos_top_right.position.x
+	var boundaries_left = pos_bottom_left.position.x
+	var boundaries_top = pos_top_right.position.y
+	var boundaries_bottom = pos_bottom_left.position.y
+	camera.limit_right = boundaries_right
+	camera.limit_left = boundaries_left
+	camera.limit_top = boundaries_top
+	camera.limit_bottom = boundaries_bottom

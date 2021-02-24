@@ -5,20 +5,19 @@
 [ext_resource path="res://Player/Woodcutter_walk.png" type="Texture" id=3]
 [ext_resource path="res://Player/Woodcutter_attack2.png" type="Texture" id=4]
 
-[sub_resource type="CapsuleShape2D" id=15]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 3.9885
 height = 10.4706
 
-[sub_resource type="CapsuleShape2D" id=16]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 2.58543
 height = 7.94681
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=3]
 radius = 2.60797
 height = 11.6126
 
-[sub_resource type="Animation" id=3]
-resource_name = "Attack"
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -107,8 +106,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Idle"
+[sub_resource type="Animation" id=5]
 length = 0.9
 loop = true
 tracks/0/type = "value"
@@ -172,8 +170,7 @@ tracks/4/keys = {
 "values": [ 1.0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Walk"
+[sub_resource type="Animation" id=6]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -237,36 +234,36 @@ tracks/4/keys = {
 "values": [ 0.8 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "Attack"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "Walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id=13]
-states/Attack/node = SubResource( 6 )
+[sub_resource type="AnimationNodeStateMachine" id=14]
+states/Attack/node = SubResource( 7 )
 states/Attack/position = Vector2( 370.333, -26 )
-states/Idle/node = SubResource( 7 )
+states/Idle/node = SubResource( 8 )
 states/Idle/position = Vector2( 369, 112.222 )
-states/Walk/node = SubResource( 8 )
+states/Walk/node = SubResource( 9 )
 states/Walk/position = Vector2( 576.333, 111.666 )
-transitions = [ "Idle", "Walk", SubResource( 9 ), "Walk", "Idle", SubResource( 10 ), "Idle", "Attack", SubResource( 11 ), "Attack", "Idle", SubResource( 12 ) ]
+transitions = [ "Idle", "Walk", SubResource( 10 ), "Walk", "Idle", SubResource( 11 ), "Idle", "Attack", SubResource( 12 ), "Attack", "Idle", SubResource( 13 ) ]
 start_node = "Idle"
 graph_offset = Vector2( -21, -107 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -288,11 +285,11 @@ hframes = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 3.82401, 14.2036 )
 rotation = -1.57079
-shape = SubResource( 15 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 10.0209, 11.8651 )
-shape = SubResource( 16 )
+shape = SubResource( 2 )
 
 [node name="Hitbox" type="Area2D" parent="." groups=[
 "player",
@@ -303,23 +300,20 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 24.429, 4.66643 )
 rotation = 1.57079
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Attack = SubResource( 3 )
-anims/Idle = SubResource( 4 )
-anims/Walk = SubResource( 5 )
+anims/Attack = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Walk = SubResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 13 )
+tree_root = SubResource( 14 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 14 )
+parameters/playback = SubResource( 15 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-limit_left = -1085
-limit_top = -766
-limit_right = 2172
-limit_bottom = 1306
+limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 6.0
