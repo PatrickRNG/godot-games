@@ -317,3 +317,8 @@ current = true
 limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 6.0
+
+[node name="ItemHolder" type="Position2D" parent="."]
+position = Vector2( 4.43621, -24.4249 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 2

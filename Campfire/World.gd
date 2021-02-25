@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var campfireHealth = $YSort/Campfire/Health
+onready var campfire = $YSort/Campfire
 onready var world = $YSort
 onready var tree = preload("res://Tree/Tree.tscn")
 onready var spawn_boundaries_top_left = $Spawn_boundaries_top_left
@@ -12,8 +13,12 @@ export(int) var total_tree_spawn_count = 120
 
 func _ready():
 	# Spawn all trees
+	campfire.connect("change_tree_position", self, "change_tree_position")
 	for n in total_tree_spawn_count:
 		spawn_tree()
+
+func _process(delta):
+	Manager.time_score += 1 * delta
 
 func generate_random_position() -> Vector2:
 	var screenSize = get_viewport().get_visible_rect().size
@@ -36,7 +41,6 @@ func spawn_tree():
 
 func change_tree_position(tree):
 	var tree_position = generate_random_position()
-	print_debug(">> changed ", tree_position)
 	tree.position = tree_position
 
 func _on_Timer_timeout():

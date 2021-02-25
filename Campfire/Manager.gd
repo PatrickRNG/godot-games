@@ -1,4 +1,4 @@
 extends Node
 
 var trees: Array = []
-var wood = 0
+var time_score: float = 0

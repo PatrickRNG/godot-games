@@ -11,6 +11,7 @@ var facing_left = false
 var is_attacking = false
 var can_attack = true
 var state = MOVE
+var is_holding = false
 
 export(int) var speed = 80
 export(int) var wood = 0
@@ -18,6 +19,7 @@ export(int) var wood = 0
 onready var camera = $Camera2D
 onready var animationTree = $AnimationTree
 onready var hitbox = $Hitbox/CollisionShape2D
+onready var item_holder = $ItemHolder
 onready var animationState = animationTree.get("parameters/playback")
 
 func _ready():
@@ -80,6 +82,17 @@ func attack_state():
 #	Wait some time before able to fire, (receive timeout signal after completion)
 	yield(get_tree().create_timer(attack_rate), "timeout")
 	can_attack = true
+
+func attach_item(item: String):
+	if item_holder.get_children().size() < 1:
+		var item_node = load("res://Items/" + item + "_item.tscn")
+		var item_instance = item_node.instance()
+		item_holder.add_child(item_instance)
+
+func detach_item():
+	if item_holder.get_children().size() >= 1:
+		item_holder.get_children()[0].queue_free()
+		is_holding = false
 
 func manage_camera():
 	var pos_top_right = get_node("/root/World/Spawn_boundaries_top_right")

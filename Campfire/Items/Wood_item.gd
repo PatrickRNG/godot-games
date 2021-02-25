@@ -2,6 +2,8 @@ extends Node2D
 
 func _on_Area2D_body_entered(body):
 	var player = body
-	player.wood += 1
-	Manager.wood = player.wood
-	queue_free()
+	if (!player.is_holding):
+		player.is_holding = true
+		player.wood += 2
+		player.attach_item("Wood")
+		queue_free()

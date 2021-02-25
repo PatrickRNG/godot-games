@@ -38,11 +38,11 @@ func spawn_wood_item():
 # Player axe hitbox entered tree
 func _on_Hurtbox_area_entered(area):
 	var player = area.get_parent()
-	Manager.wood = player.wood
 	if (!is_cut):
 		self.health -= 1
 
 func _on_SpawnArea_area_entered(area):
 #	spawn tree again if overlap
-	emit_signal("change_tree_position", area.get_parent())
-#	area.get_parent().queue_free()
+	var area_node = area.get_parent()
+	if area_node.is_in_group("tree"):
+		emit_signal("change_tree_position", area_node)
