@@ -11,7 +11,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.321569, 0.321569, 0.321569, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -28,7 +28,7 @@ margin_top = 0.0865932
 margin_right = 84.9008
 margin_bottom = 14.0866
 custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 5 )
+custom_styles/bg = SubResource( 2 )
 value = 50.0
 percent_visible = false
 __meta__ = {
