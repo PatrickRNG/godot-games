@@ -1,9 +1,10 @@
 extends Node2D
 
+onready var tree = preload("res://Tree/Tree.tscn")
 onready var campfireHealth = $YSort/Campfire/Health
 onready var campfire = $YSort/Campfire
 onready var world = $YSort
-onready var tree = preload("res://Tree/Tree.tscn")
+onready var animationPlayer = $AnimationPlayer
 onready var spawn_boundaries_top_left = $Spawn_boundaries_top_left
 onready var spawn_boundaries_bottom_right = $Spawn_boundaries_bottom_right
 onready var spawn_boundaries_bottom_left = $Spawn_boundaries_bottom_left
@@ -13,6 +14,7 @@ export(int) var total_tree_spawn_count = 120
 
 func _ready():
 	# Spawn all trees
+	animationPlayer.play("Day_Night_Cycle")
 	campfire.connect("change_tree_position", self, "change_tree_position")
 	for n in total_tree_spawn_count:
 		spawn_tree()
@@ -35,7 +37,6 @@ func spawn_tree():
 	var tree_position = generate_random_position()
 	var tree_instance = tree.instance()
 	tree_instance.connect("change_tree_position", self, "change_tree_position")
-	
 	world.add_child(tree_instance)
 	tree_instance.position = tree_position
 

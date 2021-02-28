@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://top_down_forest.png" type="Texture" id=1]
 [ext_resource path="res://Tree/Tree.gd" type="Script" id=2]
@@ -16,9 +16,13 @@ radius = 14.5682
 [sub_resource type="CircleShape2D" id=4]
 radius = 26.373
 
+[sub_resource type="OccluderPolygon2D" id=5]
+polygon = PoolVector2Array( -14.2653, 2.23954, -14.2838, 1.27331, -13.299, 1.29189, -13.2805, 0.269912, -12.2585, 0.288494, -12.2548, -0.731662, -11.2607, -0.722371, -11.2607, -2.74774, -9.27252, -2.72916, -9.25845, -4.70807, -8.26752, -4.70807, -8.2763, -6.7513, -6.25937, -6.74253, -6.25937, -5.73407, -5.28599, -5.71653, -4.25999, -4.71684, -3.26907, -4.6993, -2.26938, -3.66453, 4.71093, -3.69084, 5.73693, -4.70807, 9.74447, -4.70807, 9.72694, -3.72592, 10.7179, -3.71715, 10.7354, -1.70023, 12.7172, -1.70899, 12.7085, -0.682994, 13.7257, -0.700532, 13.7082, 0.290391, 14.7254, 0.264083, 14.7166, 1.28131, 15.7251, 1.29885, 15.7163, 3.26316, 13.7082, 3.27193, 13.7356, 4.29238, 9.72119, 4.29238, 9.72119, 5.2939, 10.7144, 5.2939, 10.7227, 6.28715, 7.71814, 6.3037, 7.72642, 7.33006, 6.72959, 7.30366, 6.73944, 8.30766, 5.72559, 8.30766, 5.71575, 9.28213, 4.72159, 9.29197, 4.71175, 10.296, 3.70775, 10.3058, 3.71759, 11.3, -1.27287, 11.3, -1.25319, 10.2861, -3.27103, 10.296, -3.26119, 9.28213, -4.25534, 9.30182, -4.26519, 7.28397, -5.25935, 7.27413, -5.25935, 6.26029, -8.28119, 6.28982, -8.2615, 5.28582, -10.2695, 5.27597, -10.271, 4.30971, -11.2932, 4.28182, -11.2538, 3.28766, -12.2775, 3.28766, -12.2578, 2.26397 )
+
 [node name="Tree" type="StaticBody2D" groups=[
 "tree",
 ]]
+light_mask = -2147483645
 position = Vector2( 0, -2 )
 scale = Vector2( 2, 2 )
 z_index = 1
@@ -32,6 +36,8 @@ region_enabled = true
 region_rect = Rect2( 0, 160, 60, 100 )
 
 [node name="CollisionTree" type="CollisionPolygon2D" parent="."]
+visible = false
+light_mask = 3
 position = Vector2( 0.770451, 0.728499 )
 scale = Vector2( 1.44, 1.32 )
 polygon = PoolVector2Array( -11.4327, 1.82125, -5.60881, -4.41274, 6.39435, -4.29343, 11.5313, 2.07121, 1.36311, 9.86132, -1.49824, 9.43567 )
@@ -41,6 +47,7 @@ anims/Cut = SubResource( 1 )
 anims/Idle = SubResource( 2 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 position = Vector2( -0.850431, 2.30387 )
 collision_layer = 4
 collision_mask = 0
@@ -53,11 +60,18 @@ shape = SubResource( 3 )
 [node name="Health" parent="." instance=ExtResource( 3 )]
 
 [node name="SpawnArea" type="Area2D" parent="."]
+visible = false
 position = Vector2( -0.0726166, 2.36311 )
 collision_mask = 2147483649
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
 position = Vector2( 1.47157, -0.630676 )
 shape = SubResource( 4 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+light_mask = 2
+position = Vector2( 0.831406, 1.29122 )
+occluder = SubResource( 5 )
+light_mask = 2
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="area_entered" from="SpawnArea" to="." method="_on_SpawnArea_area_entered"]

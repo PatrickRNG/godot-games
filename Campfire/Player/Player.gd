@@ -2,16 +2,18 @@ extends KinematicBody2D
 
 enum {
 	MOVE,
-	ATTACK
+	ATTACK,
+	DROPPING
 }
 
 var velocity = Vector2.ZERO
 var current_active_tree
+var state = MOVE
 var facing_left = false
 var is_attacking = false
 var can_attack = true
-var state = MOVE
 var is_holding = false
+var current_item: Resource
 
 export(int) var speed = 80
 export(int) var wood = 0
@@ -31,7 +33,10 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_action"):
-		state = ATTACK
+		if is_holding:
+			state = DROPPING
+		else:
+			state = ATTACK
 	
 	match state:
 		MOVE:
@@ -39,6 +44,8 @@ func _physics_process(delta):
 		ATTACK:
 			if can_attack:
 				attack_state()
+		DROPPING:
+			drop_item_state()
 	
 func move_state(_delta) -> void:
 	var input_vector = Vector2.ZERO
@@ -88,11 +95,27 @@ func attach_item(item: String):
 		var item_node = load("res://Items/" + item + "_item.tscn")
 		var item_instance = item_node.instance()
 		item_holder.add_child(item_instance)
+		current_item = item_node
 
 func detach_item():
-	if item_holder.get_children().size() >= 1:
+	is_holding = false
+	if item_holder.get_children().size() > 0:
 		item_holder.get_children()[0].queue_free()
-		is_holding = false
+		current_item = null
+		wood = 0
+
+func drop_item_state():
+	if is_holding and current_item:
+		var world = get_node("/root/World/YSort")
+		var item_instance = current_item.instance()
+		if facing_left:
+			item_instance.position = position + Vector2(-45, 0)
+		else:
+			item_instance.position = position + Vector2(45, 0)
+		item_instance.scale = Vector2(2, 2)
+		world.add_child(item_instance)
+		detach_item()
+		state = MOVE
 
 func manage_camera():
 	var pos_top_right = get_node("/root/World/Spawn_boundaries_top_right")
