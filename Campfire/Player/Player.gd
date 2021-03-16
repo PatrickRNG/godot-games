@@ -94,6 +94,7 @@ func attach_item(item: String):
 	if item_holder.get_children().size() < 1:
 		var item_node = load("res://Items/" + item + "_item.tscn")
 		var item_instance = item_node.instance()
+		item_instance.disable_colectable()
 		item_holder.add_child(item_instance)
 		current_item = item_node
 
