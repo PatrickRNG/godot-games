@@ -1,13 +1,15 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Player/$Kryll-Rogue-01.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Utils/Health.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player/mplus-1m-regular.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.5
 height = 11.0
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=2]
 resource_name = "Idle_Down"
 length = 0.1
 loop = true
@@ -24,7 +26,7 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=3]
 resource_name = "Idle_Left"
 length = 0.1
 loop = true
@@ -41,7 +43,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=4]
 resource_name = "Idle_Right"
 length = 0.1
 loop = true
@@ -58,7 +60,7 @@ tracks/0/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=5]
 resource_name = "Idle_Up"
 length = 0.1
 loop = true
@@ -75,8 +77,7 @@ tracks/0/keys = {
 "values": [ 10 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Walk_Down"
+[sub_resource type="Animation" id=6]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -92,8 +93,7 @@ tracks/0/keys = {
 "values": [ 1, 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Walk_Left"
+[sub_resource type="Animation" id=7]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -109,8 +109,7 @@ tracks/0/keys = {
 "values": [ 4, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Walk_Right"
+[sub_resource type="Animation" id=8]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -126,8 +125,7 @@ tracks/0/keys = {
 "values": [ 7, 6, 7, 8 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Walk_Up"
+[sub_resource type="Animation" id=9]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -143,68 +141,86 @@ tracks/0/keys = {
 "values": [ 10, 9, 10, 11 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "Idle_Down"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "Idle_Up"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Idle_Right"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "Idle_Left"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=21]
-blend_point_0/node = SubResource( 17 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=14]
+blend_point_0/node = SubResource( 10 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 18 )
+blend_point_1/node = SubResource( 11 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 19 )
+blend_point_2/node = SubResource( 12 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 20 )
+blend_point_3/node = SubResource( 13 )
 blend_point_3/pos = Vector2( -1, 0 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "Walk_Down"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "Walk_Up"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "Walk_Left"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "Walk_Right"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=10]
-blend_point_0/node = SubResource( 6 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=19]
+blend_point_0/node = SubResource( 15 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 7 )
+blend_point_1/node = SubResource( 16 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 8 )
+blend_point_2/node = SubResource( 17 )
 blend_point_2/pos = Vector2( -1, 0 )
-blend_point_3/node = SubResource( 9 )
+blend_point_3/node = SubResource( 18 )
 blend_point_3/pos = Vector2( 1, 0 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
-[sub_resource type="AnimationNodeStateMachine" id=11]
-states/Idle/node = SubResource( 21 )
+[sub_resource type="AnimationNodeStateMachine" id=22]
+states/Idle/node = SubResource( 14 )
 states/Idle/position = Vector2( 633.37, 40.3333 )
-states/Walk/node = SubResource( 10 )
+states/Walk/node = SubResource( 19 )
 states/Walk/position = Vector2( 634.161, 173.667 )
-transitions = [ "Idle", "Walk", SubResource( 22 ), "Walk", "Idle", SubResource( 23 ) ]
+transitions = [ "Idle", "Walk", SubResource( 20 ), "Walk", "Idle", SubResource( 21 ) ]
 start_node = "Idle"
 graph_offset = Vector2( -96, -44 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.729412, 0.929412, 1, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="DynamicFont" id=26]
+font_data = ExtResource( 4 )
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -221,20 +237,20 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.4
-anims/Idle_Down = SubResource( 13 )
-anims/Idle_Left = SubResource( 14 )
-anims/Idle_Right = SubResource( 15 )
-anims/Idle_Up = SubResource( 16 )
-anims/Walk_Down = SubResource( 2 )
-anims/Walk_Left = SubResource( 3 )
-anims/Walk_Right = SubResource( 4 )
-anims/Walk_Up = SubResource( 5 )
+anims/Idle_Down = SubResource( 2 )
+anims/Idle_Left = SubResource( 3 )
+anims/Idle_Right = SubResource( 4 )
+anims/Idle_Up = SubResource( 5 )
+anims/Walk_Down = SubResource( 6 )
+anims/Walk_Left = SubResource( 7 )
+anims/Walk_Right = SubResource( 8 )
+anims/Walk_Up = SubResource( 9 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 11 )
+tree_root = SubResource( 22 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 12 )
+parameters/playback = SubResource( 23 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Walk/blend_position = Vector2( 0, 0 )
 
@@ -242,3 +258,49 @@ parameters/Walk/blend_position = Vector2( 0, 0 )
 current = true
 smoothing_enabled = true
 smoothing_speed = 10.0
+
+[node name="Health" parent="." instance=ExtResource( 3 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="O2Bar" type="ProgressBar" parent="CanvasLayer/Control"]
+margin_left = 40.0
+margin_top = 260.0
+margin_right = 233.0
+margin_bottom = 290.0
+rect_rotation = -89.9999
+custom_styles/fg = SubResource( 24 )
+custom_styles/bg = SubResource( 25 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="O2" type="Label" parent="CanvasLayer/Control"]
+margin_left = 45.651
+margin_top = 38.0724
+margin_right = 64.651
+margin_bottom = 62.0724
+custom_fonts/font = SubResource( 26 )
+text = "O2"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="O2Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="ItemHolder" type="Position2D" parent="."]
+position = Vector2( 0, -101.823 )
+[connection signal="changed" from="Health" to="CanvasLayer/Control/O2Bar" method="set_value"]
+[connection signal="max_changed" from="Health" to="CanvasLayer/Control/O2Bar" method="set_max"]
+[connection signal="timeout" from="O2Timer" to="." method="_on_O2Timer_timeout"]

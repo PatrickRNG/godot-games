@@ -1,0 +1,275 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Ship/SciFi_Warehouse_C.png" type="Texture" id=1]
+[ext_resource path="res://Ship/Ship.gd" type="Script" id=2]
+[ext_resource path="res://Player/mplus-1m-regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://World/SciFi_Warehouse_E.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 673, 482, 93, 91 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 55.208
+height = 115.459
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.419608, 0.419608, 0.419608, 0.235294 )
+border_color = Color( 0.278431, 0.231373, 0.231373, 1 )
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.278431, 0.278431, 0.278431, 0.392157 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 303, 57, 13, 25 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 4 )
+region = Rect2( 251, 9, 23, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 4 )
+region = Rect2( 251, 155, 26, 27 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 14
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "GrowPanel"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control2:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "GrowUI"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control2:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "ShrinkUI"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "toggle_ui"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Control2:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ) ]
+}
+
+[node name="Ship" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.44545, -26.2815 )
+scale = Vector2( 2, 2 )
+texture = SubResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2( 1.7818, -26.2815 )
+polygon = PoolVector2Array( 53.4682, 65.5315, 57.8087, 83.8112, 90.7182, 84.2815, 88.2182, 67.0315, 86.8906, 65.2908, 84.6194, 17.0248, -0.781799, -5.46849, -86.8199, 18.4138, -87.2818, 66.7815, -93.0709, 81.7725, -57.435, 83.1088, -49.7818, 62.5315, -37.5318, 61.2815, -21.7818, 80.0315, 19.1823, 79.9907, 37.4682, 61.5315 )
+
+[node name="Interact_Area" type="Area2D" parent="."]
+visible = false
+position = Vector2( 1.4158, 0 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_Area"]
+position = Vector2( -2.66968, 19.3552 )
+rotation = 1.57079
+shape = SubResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+margin_top = 92.934
+margin_right = 40.0
+margin_bottom = 132.934
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control"]
+margin_left = -147.579
+margin_top = -12.8717
+margin_right = 148.421
+margin_bottom = 11.1283
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
+text = "Press \"space\" to enter or attach item"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="."]
+margin_left = 218.332
+margin_top = -41.7549
+margin_right = 390.332
+margin_bottom = 80.2451
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Control2"]
+margin_left = -111.991
+margin_top = -82.6274
+margin_right = 112.009
+margin_bottom = 76.3726
+custom_styles/panel = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control2/Panel"]
+modulate = Color( 0.152941, 0.152941, 0.152941, 0.454902 )
+margin_left = 131.012
+margin_top = 24.4683
+margin_right = 144.012
+margin_bottom = 49.4683
+rect_scale = Vector2( 1.5, 1.5 )
+texture = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="Control2/Panel"]
+modulate = Color( 0.152941, 0.152941, 0.152941, 0.454902 )
+margin_left = 15.1397
+margin_top = 18.5087
+margin_right = 38.1397
+margin_bottom = 50.5087
+rect_scale = Vector2( 1.5, 1.5 )
+texture = SubResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="Control2/Panel"]
+modulate = Color( 0.152941, 0.152941, 0.152941, 0.454902 )
+margin_left = 13.3615
+margin_top = 97.4385
+margin_right = 39.3615
+margin_bottom = 124.438
+rect_scale = Vector2( 1.5, 1.5 )
+texture = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control2/Panel"]
+margin_left = 161.119
+margin_top = 31.815
+margin_right = 189.119
+margin_bottom = 55.815
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.654902, 0.752941, 0.658824, 1 )
+text = "Done"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Control2/Panel"]
+margin_left = 61.9511
+margin_top = 106.896
+margin_right = 89.9511
+margin_bottom = 130.896
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.654902, 0.752941, 0.658824, 1 )
+text = "Done"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Control2/Panel"]
+margin_left = 61.5917
+margin_top = 32.2366
+margin_right = 89.5917
+margin_bottom = 56.2366
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.752941, 0.654902, 0.654902, 1 )
+text = "Missing"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/GrowPanel = SubResource( 12 )
+anims/GrowUI = SubResource( 4 )
+anims/ShrinkUI = SubResource( 6 )
+[connection signal="body_entered" from="Interact_Area" to="." method="_on_Interact_Area_body_entered"]
+[connection signal="body_exited" from="Interact_Area" to="." method="_on_Interact_Area_body_exited"]

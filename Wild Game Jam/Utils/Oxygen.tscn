@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+signal start_oxigen
+
+onready var o2Timer = $O2Timer
+
+export(bool) var regenerate: bool = false
+export(int) var value: int = 0
+export(int) var oxygen_value: int = 1
+export(int) var progress_time = 1
+
+func _ready():
+	o2Timer.wait_time = progress_time
+
+func _on_O2Timer_timeout():
+	print_debug(\">>> \", value)
+	if regenerate:
+		value += oxygen_value
+	else:
+		value -= oxygen_value
+"
+
+[node name="Oxygen" type="Node"]
+script = SubResource( 1 )
+
+[node name="O2Timer" type="Timer" parent="."]
+autostart = true
+[connection signal="timeout" from="O2Timer" to="." method="_on_O2Timer_timeout"]

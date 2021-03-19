@@ -2,25 +2,22 @@ extends Node
 
 signal max_changed(new_max)
 signal changed(new_amount)
-signal depleted
 
-export(int) var max_amount = 10 setget set_max
+export(int) var max_amount = 100 setget set_max
 onready var current = max_amount setget set_current
 
 func _ready():
 	_initialize()
 
-func set_max(new_max: int):
-	max_amount = max(1, new_max) # Max health only greater than 1
+func set_max(new_max: int) -> void:
+	max_amount = max(1, new_max)
 	emit_signal("max_changed", max_amount)
 
-func set_current(new_value: int):
-	current = clamp(new_value, 0, max_amount) # Health never below 0, and past max
+func set_current(new_value: int) -> void:
+	current = clamp(new_value, 0, max_amount)
 	emit_signal("changed", current)
-	
-	if current == 0:
-		emit_signal("depleted")
 
 func _initialize():
 	emit_signal("max_changed", max_amount)
 	emit_signal("changed", current)
+
