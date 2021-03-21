@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=2]
+[gd_scene load_steps=81 format=2]
 
 [ext_resource path="res://Audio/Space Riddle.wav" type="AudioStream" id=1]
 [ext_resource path="res://World/SciFi_Warehouse_A2.png" type="Texture" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://World/Props/Tree4.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=11]
 [ext_resource path="res://World/Oxigen_Plant.tscn" type="PackedScene" id=12]
-[ext_resource path="res://World/World.gd" type="Script" id=13]
 [ext_resource path="res://Shaders/fog.shader" type="Shader" id=14]
 [ext_resource path="res://Ship/SciFi_Warehouse_C.png" type="Texture" id=15]
 [ext_resource path="res://World/Props/ShipPart.tscn" type="PackedScene" id=16]
@@ -1354,8 +1353,13 @@ shader = ExtResource( 14 )
 shader_param/color = Vector3( 0.3, 0.3, 0.3 )
 shader_param/OCTAVES = 4
 
+[sub_resource type="RectangleShape2D" id=53]
+extents = Vector2( 9.23401, 1754.56 )
+
+[sub_resource type="RectangleShape2D" id=54]
+extents = Vector2( 9.23401, 2717.56 )
+
 [node name="World" type="Node2D"]
-script = ExtResource( 13 )
 
 [node name="Ground" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -1376,7 +1380,7 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="Oxygen_Plant" parent="Props/Props" instance=ExtResource( 12 )]
 modulate = Color( 0.443137, 0.576471, 0.431373, 1 )
-position = Vector2( 4510.27, 2345.22 )
+position = Vector2( 4453.12, 2281.72 )
 
 [node name="Oxygen_Plant3" parent="Props/Props" instance=ExtResource( 12 )]
 modulate = Color( 0.443137, 0.576471, 0.431373, 1 )
@@ -1384,12 +1388,12 @@ position = Vector2( 3891.5, 790.175 )
 
 [node name="Oxygen_Plant2" parent="Props/Props" instance=ExtResource( 12 )]
 modulate = Color( 0.301961, 0.901961, 0.439216, 1 )
-position = Vector2( 420.021, 2524.71 )
+position = Vector2( 336.776, 2817.25 )
 z_as_relative = false
 
 [node name="Oxygen_Plant4" parent="Props/Props" instance=ExtResource( 12 )]
 modulate = Color( 0.301961, 0.901961, 0.439216, 1 )
-position = Vector2( 2621.34, 2219.21 )
+position = Vector2( 1604.2, 2204.82 )
 z_as_relative = false
 
 [node name="YSort" type="YSort" parent="Props"]
@@ -1443,7 +1447,7 @@ position = Vector2( 355.165, 2281.78 )
 position = Vector2( 1271.76, 2871 )
 
 [node name="Plant4" parent="Props/YSort" instance=ExtResource( 17 )]
-position = Vector2( 1801.45, 2493.62 )
+position = Vector2( 1875.18, 2531.67 )
 
 [node name="Plant5" parent="Props/YSort" instance=ExtResource( 17 )]
 position = Vector2( 2701.74, 3238.13 )
@@ -1503,13 +1507,13 @@ position = Vector2( 1331.4, 2978.91 )
 position = Vector2( 1255.07, 3059.73 )
 
 [node name="Plant25" parent="Props/YSort" instance=ExtResource( 23 )]
-position = Vector2( 687.039, 2822.77 )
+position = Vector2( 664.79, 2838.66 )
 
 [node name="Plant26" parent="Props/YSort" instance=ExtResource( 17 )]
 position = Vector2( 498.326, 3285.47 )
 
 [node name="Plant27" parent="Props/YSort" instance=ExtResource( 23 )]
-position = Vector2( 1420.92, 2909.13 )
+position = Vector2( 1512.05, 2861.43 )
 
 [node name="Summoner" parent="Props/YSort" instance=ExtResource( 24 )]
 position = Vector2( 2399.67, 731.147 )
@@ -1585,7 +1589,7 @@ __meta__ = {
 }
 
 [node name="ShipPart" parent="." instance=ExtResource( 16 )]
-position = Vector2( 1672.93, 2944.95 )
+position = Vector2( 1665.38, 2963.83 )
 
 [node name="ShipPart2" parent="." instance=ExtResource( 16 )]
 position = Vector2( 5048.38, 2347.25 )
@@ -1598,3 +1602,24 @@ type = 1
 [node name="ShipPart4" parent="." instance=ExtResource( 16 )]
 position = Vector2( 2523.77, 1349.23 )
 type = 3
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2( -2.97301, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2( 0, 1752.94 )
+shape = SubResource( 53 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Wall"]
+position = Vector2( 5425.97, 1752.94 )
+shape = SubResource( 53 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall"]
+position = Vector2( 2716.42, 3507.38 )
+rotation = 1.57079
+shape = SubResource( 54 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Wall"]
+position = Vector2( 2716.42, -1.41281 )
+rotation = 1.57079
+shape = SubResource( 54 )

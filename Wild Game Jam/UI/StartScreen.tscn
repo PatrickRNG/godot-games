@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Player/mplus-1m-regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/$Menu_Fog3.png" type="Texture" id=2]
 [ext_resource path="res://UI/StartScreen.gd" type="Script" id=3]
 [ext_resource path="res://UI/Seka - WhatIsLeft.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Audio/cancel.ogg" type="AudioStream" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
@@ -392,5 +393,11 @@ parameters/playback = SubResource( 25 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -16.0
+
+[node name="ButtonAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -12.0
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

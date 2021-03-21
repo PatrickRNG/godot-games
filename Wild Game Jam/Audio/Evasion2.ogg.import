@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Evasion2.ogg-46c7d57f017711e5d09c353f86fee4d7.oggstr"
+
+[deps]
+
+source_file="res://Audio/Evasion2.ogg"
+dest_files=[ "res://.import/Evasion2.ogg-46c7d57f017711e5d09c353f86fee4d7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

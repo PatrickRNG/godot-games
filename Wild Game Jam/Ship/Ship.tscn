@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Ship/SciFi_Warehouse_C.png" type="Texture" id=1]
 [ext_resource path="res://Ship/Ship.gd" type="Script" id=2]
@@ -6,14 +6,15 @@
 [ext_resource path="res://World/SciFi_Warehouse_E.png" type="Texture" id=4]
 [ext_resource path="res://Effects/ClawPhoton.png" type="Texture" id=5]
 [ext_resource path="res://Effects/Cure2.png" type="Texture" id=6]
+[ext_resource path="res://Audio/powerup_08.ogg" type="AudioStream" id=7]
 
-[sub_resource type="Curve" id=75]
+[sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0.45092 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=76]
-curve = SubResource( 75 )
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=77]
+[sub_resource type="ParticlesMaterial" id=3]
 flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
 spread = 30.0
@@ -22,22 +23,22 @@ initial_velocity = 35.0
 initial_velocity_random = 0.2
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale_curve = SubResource( 76 )
+scale_curve = SubResource( 2 )
 color = Color( 0.384314, 0.384314, 0.384314, 0.690196 )
 
-[sub_resource type="StreamTexture" id=78]
+[sub_resource type="StreamTexture" id=4]
 flags = 4
 load_path = "res://.import/circle.png-67f6da3355948eeccb8d32c8d73749bd.stex"
 
-[sub_resource type="AtlasTexture" id=79]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
 region = Rect2( 673, 482, 93, 91 )
 
-[sub_resource type="CapsuleShape2D" id=80]
+[sub_resource type="CapsuleShape2D" id=6]
 radius = 55.208
 height = 115.459
 
-[sub_resource type="StyleBoxFlat" id=81]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.419608, 0.419608, 0.419608, 0.235294 )
 border_color = Color( 0.278431, 0.231373, 0.231373, 1 )
 expand_margin_left = 15.0
@@ -45,55 +46,55 @@ expand_margin_right = 15.0
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="DynamicFont" id=82]
+[sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=91]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.247059, 0.247059, 0.247059, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="StyleBoxFlat" id=92]
+[sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="DynamicFont" id=93]
+[sub_resource type="DynamicFont" id=11]
 size = 12
 font_data = ExtResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=83]
+[sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0.278431, 0.278431, 0.278431, 0.392157 )
 
-[sub_resource type="AtlasTexture" id=84]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 4 )
 region = Rect2( 303, 57, 13, 25 )
 
-[sub_resource type="AtlasTexture" id=86]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 4 )
 region = Rect2( 251, 155, 26, 27 )
 
-[sub_resource type="AtlasTexture" id=85]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 4 )
 region = Rect2( 251, 9, 23, 32 )
 
-[sub_resource type="AtlasTexture" id=94]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 4 )
 region = Rect2( 104, 153, 29, 29 )
 
-[sub_resource type="DynamicFont" id=87]
+[sub_resource type="DynamicFont" id=17]
 size = 14
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=95]
+[sub_resource type="DynamicFont" id=18]
 size = 14
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=88]
+[sub_resource type="Animation" id=19]
 resource_name = "GrowPanel"
 length = 0.2
 tracks/0/type = "value"
@@ -109,7 +110,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=89]
+[sub_resource type="Animation" id=20]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/Control:rect_scale")
@@ -136,7 +137,35 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=90]
+[sub_resource type="Animation" id=44]
+resource_name = "PlayEndSound"
+length = 4.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.1, 4.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -12.0, -12.0, -20.0 ]
+}
+
+[sub_resource type="Animation" id=21]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/Control:rect_scale")
@@ -177,97 +206,97 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ) ]
 }
 
-[sub_resource type="AtlasTexture" id=53]
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=54]
+[sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 5 )
 region = Rect2( 192, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=55]
+[sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 5 )
 region = Rect2( 384, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=56]
+[sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 5 )
 region = Rect2( 576, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=57]
+[sub_resource type="AtlasTexture" id=26]
 atlas = ExtResource( 5 )
 region = Rect2( 768, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=58]
+[sub_resource type="AtlasTexture" id=27]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 192, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=59]
+[sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 5 )
 region = Rect2( 192, 192, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=60]
+[sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 5 )
 region = Rect2( 384, 192, 192, 192 )
 
-[sub_resource type="SpriteFrames" id=61]
+[sub_resource type="SpriteFrames" id=30]
 animations = [ {
-"frames": [ SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), null, null, null, null, null, null, null, null, null, null, null, null, null ],
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), null, null, null, null, null, null, null, null, null, null, null, null, null ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=62]
+[sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 6 )
 region = Rect2( 192, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=63]
+[sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 6 )
 region = Rect2( 384, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=64]
+[sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 6 )
 region = Rect2( 576, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=65]
+[sub_resource type="AtlasTexture" id=34]
 atlas = ExtResource( 6 )
 region = Rect2( 768, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=66]
+[sub_resource type="AtlasTexture" id=35]
 atlas = ExtResource( 6 )
 region = Rect2( 0, 192, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=67]
+[sub_resource type="AtlasTexture" id=36]
 atlas = ExtResource( 6 )
 region = Rect2( 192, 192, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=68]
+[sub_resource type="AtlasTexture" id=37]
 atlas = ExtResource( 6 )
 region = Rect2( 384, 192, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=69]
+[sub_resource type="AtlasTexture" id=38]
 atlas = ExtResource( 6 )
 region = Rect2( 576, 192, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=70]
+[sub_resource type="AtlasTexture" id=39]
 atlas = ExtResource( 6 )
 region = Rect2( 768, 192, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=71]
+[sub_resource type="AtlasTexture" id=40]
 atlas = ExtResource( 6 )
 region = Rect2( 0, 384, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=72]
+[sub_resource type="AtlasTexture" id=41]
 atlas = ExtResource( 6 )
 region = Rect2( 192, 384, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=73]
+[sub_resource type="AtlasTexture" id=42]
 atlas = ExtResource( 6 )
 region = Rect2( 384, 384, 192, 192 )
 
-[sub_resource type="SpriteFrames" id=74]
+[sub_resource type="SpriteFrames" id=43]
 animations = [ {
-"frames": [ SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ) ],
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -287,13 +316,13 @@ scale = Vector2( 1.70548, 1.94 )
 position = Vector2( 21.2717, -10.4938 )
 amount = 10
 lifetime = 1.2
-process_material = SubResource( 77 )
-texture = SubResource( 78 )
+process_material = SubResource( 3 )
+texture = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -0.44545, -26.2815 )
 scale = Vector2( 2, 2 )
-texture = SubResource( 79 )
+texture = SubResource( 5 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -309,7 +338,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_Area"]
 position = Vector2( -2.66968, 19.3552 )
 rotation = 1.57079
-shape = SubResource( 80 )
+shape = SubResource( 6 )
 
 [node name="UI" type="Node2D" parent="."]
 z_index = 1
@@ -327,8 +356,8 @@ margin_left = -147.579
 margin_top = -12.8717
 margin_right = 148.421
 margin_bottom = 11.1283
-custom_styles/normal = SubResource( 81 )
-custom_fonts/font = SubResource( 82 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "Press \"space\" to enter or attach item"
 align = 1
 __meta__ = {
@@ -340,9 +369,9 @@ margin_left = -71.3588
 margin_top = -45.8379
 margin_right = 72.6412
 margin_bottom = -24.8379
-custom_styles/fg = SubResource( 91 )
-custom_styles/bg = SubResource( 92 )
-custom_fonts/font = SubResource( 93 )
+custom_styles/fg = SubResource( 9 )
+custom_styles/bg = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -352,6 +381,7 @@ margin_left = 218.332
 margin_top = -41.7549
 margin_right = 390.332
 margin_bottom = 80.2451
+rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -361,7 +391,7 @@ margin_left = -111.991
 margin_top = -82.6274
 margin_right = 112.009
 margin_bottom = 76.3726
-custom_styles/panel = SubResource( 83 )
+custom_styles/panel = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -373,7 +403,7 @@ margin_top = 24.4683
 margin_right = 144.012
 margin_bottom = 49.4683
 rect_scale = Vector2( 1.5, 1.5 )
-texture = SubResource( 84 )
+texture = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -385,7 +415,7 @@ margin_top = 97.0
 margin_right = 39.0
 margin_bottom = 124.0
 rect_scale = Vector2( 1.5, 1.5 )
-texture = SubResource( 86 )
+texture = SubResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -397,7 +427,7 @@ margin_top = 18.5087
 margin_right = 38.1397
 margin_bottom = 50.5087
 rect_scale = Vector2( 1.5, 1.5 )
-texture = SubResource( 85 )
+texture = SubResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -409,7 +439,7 @@ margin_top = 95.0
 margin_right = 147.0
 margin_bottom = 124.0
 rect_scale = Vector2( 1.5, 1.5 )
-texture = SubResource( 94 )
+texture = SubResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -419,7 +449,7 @@ margin_left = 166.173
 margin_top = 31.815
 margin_right = 194.173
 margin_bottom = 55.815
-custom_fonts/font = SubResource( 87 )
+custom_fonts/font = SubResource( 17 )
 custom_colors/font_color = Color( 0.654902, 0.752941, 0.658824, 1 )
 text = "Done"
 __meta__ = {
@@ -431,7 +461,7 @@ margin_left = 61.9511
 margin_top = 106.896
 margin_right = 89.9511
 margin_bottom = 130.896
-custom_fonts/font = SubResource( 87 )
+custom_fonts/font = SubResource( 17 )
 custom_colors/font_color = Color( 0.654902, 0.752941, 0.658824, 1 )
 text = "Done"
 __meta__ = {
@@ -443,7 +473,7 @@ margin_left = 61.5917
 margin_top = 32.2366
 margin_right = 89.5917
 margin_bottom = 56.2366
-custom_fonts/font = SubResource( 87 )
+custom_fonts/font = SubResource( 17 )
 custom_colors/font_color = Color( 0.752941, 0.654902, 0.654902, 1 )
 text = "Missing"
 __meta__ = {
@@ -455,7 +485,7 @@ margin_left = 167.395
 margin_top = 106.896
 margin_right = 195.395
 margin_bottom = 130.896
-custom_fonts/font = SubResource( 95 )
+custom_fonts/font = SubResource( 18 )
 custom_colors/font_color = Color( 0.654902, 0.752941, 0.658824, 1 )
 text = "Done"
 __meta__ = {
@@ -463,15 +493,16 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/GrowPanel = SubResource( 88 )
-anims/GrowUI = SubResource( 89 )
-anims/ShrinkUI = SubResource( 90 )
+anims/GrowPanel = SubResource( 19 )
+anims/GrowUI = SubResource( 20 )
+anims/PlayEndSound = SubResource( 44 )
+anims/ShrinkUI = SubResource( 21 )
 
 [node name="BrokenParticles" type="AnimatedSprite" parent="."]
 position = Vector2( 52.7451, -57.6936 )
 scale = Vector2( 0.671895, 0.671895 )
-frames = SubResource( 61 )
-frame = 14
+frames = SubResource( 30 )
+frame = 9
 speed_scale = 4.0
 playing = true
 
@@ -479,9 +510,12 @@ playing = true
 modulate = Color( 0.823529, 0.823529, 0.823529, 1 )
 position = Vector2( 21.6841, -27.8296 )
 scale = Vector2( 0.257584, 0.257584 )
-frames = SubResource( 74 )
-frame = 11
+frames = SubResource( 43 )
 speed_scale = 4.0
 playing = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -12.0
 [connection signal="body_entered" from="Interact_Area" to="." method="_on_Interact_Area_body_entered"]
 [connection signal="body_exited" from="Interact_Area" to="." method="_on_Interact_Area_body_exited"]

@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Wild Game Jam"
+config/name="Unfamiliar Space"
 run/main_scene="res://UI/StartScreen.tscn"
 config/icon="res://icon.png"
 

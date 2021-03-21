@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Collapse3.ogg-86102e67e244eb8465f00306daa71861.oggstr"
+
+[deps]
+
+source_file="res://Audio/Collapse3.ogg"
+dest_files=[ "res://.import/Collapse3.ogg-86102e67e244eb8465f00306daa71861.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

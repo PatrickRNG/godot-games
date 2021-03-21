@@ -26,7 +26,7 @@ func _on_FollowArea_body_exited(body):
 	is_in_follow_area = false
 
 func _on_Health_depleted():
-	queue_free()
+	death()
 
 func _on_Hurtbox_is_hit():
 	$Hurtbox.hit_effect(self, Color(1, 0.5, 1))

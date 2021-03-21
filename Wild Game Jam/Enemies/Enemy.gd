@@ -8,6 +8,7 @@ onready var health = $Health
 var velocity = Vector2.ZERO
 
 onready var animation_tree = $AnimationTree
+onready var animation_player = $AnimationPlayer
 onready var animation_mode = animation_tree.get("parameters/playback")
 
 func _ready():
@@ -42,3 +43,7 @@ func basic_ranged_movement(target, should_move: bool = true) -> void:
 		velocity = Vector2.ZERO
 		animation_mode.travel("Idle")
 		
+func death():
+	animation_player.play("Die")
+	yield(animation_player, "animation_finished")
+	queue_free()

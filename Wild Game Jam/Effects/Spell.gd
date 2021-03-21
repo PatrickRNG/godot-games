@@ -1,11 +1,13 @@
 extends Node
 
-onready var animationPlayer = $AnimationPlayer
+onready var animation_player = $AnimationPlayer
+onready var audio_player = $AudioStreamPlayer
 
 func _ready():
-	animationPlayer.play("start_spell")
+	animation_player.play("start_spell")
+	audio_player.play()
 
 func _on_ExpireSpell_timeout():
-	animationPlayer.play("end_spell")
-	yield(animationPlayer, "animation_finished")
+	animation_player.play("end_spell")
+	yield(animation_player, "animation_finished")
 	queue_free()

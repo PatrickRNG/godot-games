@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Effects/StateDown2.png" type="Texture" id=1]
 [ext_resource path="res://Effects/Spell.gd" type="Script" id=2]
 [ext_resource path="res://Utils/Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Audio/Collapse3.ogg" type="AudioStream" id=4]
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=1]
 resource_name = "end_spell"
 length = 0.8
 tracks/0/type = "value"
@@ -20,7 +21,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=2]
 resource_name = "start_spell"
 length = 2.4
 loop = true
@@ -52,11 +53,16 @@ autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
-anims/end_spell = SubResource( 27 )
-anims/start_spell = SubResource( 28 )
+anims/end_spell = SubResource( 1 )
+anims/start_spell = SubResource( 2 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 3 )]
 collision_mask = 2
 damage = 3
 damage_over_time = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -18.0
+pitch_scale = 1.5
 [connection signal="timeout" from="ExpireSpell" to="." method="_on_ExpireSpell_timeout"]

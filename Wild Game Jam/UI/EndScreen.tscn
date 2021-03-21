@@ -1,25 +1,26 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Player/mplus-1m-regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/$Menu_Fog3.png" type="Texture" id=2]
 [ext_resource path="res://UI/EndScreen.gd" type="Script" id=3]
 [ext_resource path="res://UI/Seka - WhatIsLeft.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Audio/cancel.ogg" type="AudioStream" id=5]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.0666667, 0.0666667, 0.0666667, 0 )
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=29]
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 1280, 720 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=30]
 size = 64
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=31]
 bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
 border_width_left = 80
 border_width_top = 6
@@ -30,7 +31,7 @@ shadow_color = Color( 0.254902, 0.254902, 0.254902, 0.6 )
 shadow_size = 3
 shadow_offset = Vector2( 3, 3 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=32]
 bg_color = Color( 0.521569, 0.521569, 0.521569, 1 )
 border_width_left = 80
 border_width_top = 6
@@ -41,7 +42,7 @@ shadow_color = Color( 0.254902, 0.254902, 0.254902, 0.6 )
 shadow_size = 3
 shadow_offset = Vector2( 3, 3 )
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=33]
 bg_color = Color( 0.8, 0.8, 0.8, 1 )
 border_width_left = 80
 border_width_top = 6
@@ -51,11 +52,11 @@ shadow_color = Color( 0.254902, 0.254902, 0.254902, 0.6 )
 shadow_size = 3
 shadow_offset = Vector2( 3, 3 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=34]
 size = 20
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=35]
 resource_name = "start"
 length = 3.0
 tracks/0/type = "value"
@@ -70,8 +71,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 0.0666667, 0.0666667, 0.0666667, 0 ), Color( 0.0666667, 0.0666667, 0.0666667, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -40.0, -16.0 ]
+}
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=36]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
@@ -122,7 +135,7 @@ tracks/3/keys = {
 "values": [ "" ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=37]
 length = 7.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
@@ -149,7 +162,7 @@ tracks/1/keys = {
 "values": [ 0.0, 0.55, 0.55, 1.0 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=38]
 length = 9.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
@@ -176,7 +189,7 @@ tracks/1/keys = {
 "values": [ 0.0, 0.216667, 0.216667, 1.0 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=39]
 length = 4.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
@@ -203,7 +216,7 @@ tracks/1/keys = {
 "values": [ 0.0, 0.4, 0.4, 1.0 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=40]
 length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
@@ -268,7 +281,7 @@ tracks/4/keys = {
 "values": [ "UNFAMILIAR SPACE" ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "start"
 
 [sub_resource type="AnimationNodeAnimation" id=16]
@@ -302,12 +315,12 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=25]
-states/start/node = SubResource( 28 )
+[sub_resource type="AnimationNodeStateMachine" id=26]
+states/start/node = SubResource( 15 )
 states/start/position = Vector2( 206, 94 )
 states/text_1/node = SubResource( 16 )
 states/text_1/position = Vector2( 371, 94.1605 )
@@ -319,11 +332,11 @@ states/text_4/node = SubResource( 19 )
 states/text_4/position = Vector2( 877.667, 99 )
 states/text_5/node = SubResource( 20 )
 states/text_5/position = Vector2( 1068.33, 95 )
-transitions = [ "text_2", "text_3", SubResource( 21 ), "text_3", "text_4", SubResource( 22 ), "text_4", "text_5", SubResource( 23 ), "text_1", "text_2", SubResource( 24 ), "start", "text_1", SubResource( 29 ) ]
+transitions = [ "text_2", "text_3", SubResource( 21 ), "text_3", "text_4", SubResource( 22 ), "text_4", "text_5", SubResource( 23 ), "text_1", "text_2", SubResource( 24 ), "start", "text_1", SubResource( 25 ) ]
 start_node = "start"
 graph_offset = Vector2( 3, -5 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=26]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=41]
 
 [node name="StartScreen" type="CanvasLayer"]
 pause_mode = 2
@@ -332,7 +345,7 @@ script = ExtResource( 3 )
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -340,13 +353,13 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="PanelContainer"]
 margin_right = 1024.0
 margin_bottom = 600.0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 28 )
 
 [node name="Panel2" type="Panel" parent="PanelContainer"]
 modulate = Color( 0.164706, 0.164706, 0.164706, 0.0705882 )
 margin_right = 1024.0
 margin_bottom = 600.0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 29 )
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 margin_right = 1024.0
@@ -367,7 +380,7 @@ custom_constants/separation = 125
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 944.0
 margin_bottom = 90.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 30 )
 custom_colors/font_color = Color( 0.760784, 0.760784, 0.760784, 1 )
 align = 1
 
@@ -386,10 +399,10 @@ custom_constants/separation = 40
 modulate = Color( 1, 1, 1, 1.40246e-07 )
 margin_right = 200.0
 margin_bottom = 41.0
-custom_styles/hover = SubResource( 6 )
-custom_styles/pressed = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/hover = SubResource( 31 )
+custom_styles/pressed = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
+custom_fonts/font = SubResource( 34 )
 custom_colors/font_color_disabled = Color( 0.305882, 0.305882, 0.305882, 1 )
 custom_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
 custom_colors/font_color_hover = Color( 0.305882, 0.305882, 0.305882, 1 )
@@ -404,19 +417,24 @@ text = "You made it,"
 percent_visible = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/start = SubResource( 27 )
-anims/text_1 = SubResource( 11 )
-anims/text_2 = SubResource( 12 )
-anims/text_3 = SubResource( 13 )
-anims/text_4 = SubResource( 14 )
-anims/text_5 = SubResource( 15 )
+anims/start = SubResource( 35 )
+anims/text_1 = SubResource( 36 )
+anims/text_2 = SubResource( 37 )
+anims/text_3 = SubResource( 38 )
+anims/text_4 = SubResource( 39 )
+anims/text_5 = SubResource( 40 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 25 )
+tree_root = SubResource( 26 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 26 )
+parameters/playback = SubResource( 41 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -16.0
+volume_db = -40.0
+
+[node name="ButtonAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -12.0
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

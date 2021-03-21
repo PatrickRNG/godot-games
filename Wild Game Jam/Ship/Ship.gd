@@ -18,7 +18,8 @@ var parts_array = []
 onready var label = $UI/Control/Label
 onready var panel = $UI/Control2/Panel
 onready var fixBar = $UI/Control/FixBar
-onready var animationPlayer = $AnimationPlayer
+onready var animation_player = $AnimationPlayer
+onready var audio_player = $AudioStreamPlayer
 
 onready var missing_parts = {
 	BATTERY: { "label": $UI/Control2/Panel/Label, "texture": $UI/Control2/Panel/TextureRect, "value": false },
@@ -55,6 +56,8 @@ func _process(delta):
 	if parts_array == [true, true, true, true]:
 		is_complete = true
 		label.text = 'Hold "F" to fix the ship'
+		if is_fixed:
+			label.text = 'Leave this planet'
 		if Input.is_action_pressed("action_2"):
 			fixBar.visible = true
 			label.visible = false
@@ -66,6 +69,8 @@ func enter_ship():
 	player.is_in_ship = true
 	player.setup_o2_meter(true, 4, 0.5)
 	if is_fixed and parts_array == [true, true, true, true]:
+		animation_player.play("PlayEndSound")
+		yield(animation_player, "animation_finished")
 		get_tree().change_scene("res://UI/EndScreen.tscn")
 
 func leave_ship():
@@ -77,13 +82,13 @@ func _on_Interact_Area_body_entered(body):
 	player.can_attack = false
 	is_player_in_range = true
 	toggle_ui(true)
-	animationPlayer.play("GrowUI")
+	animation_player.play("GrowUI")
 
 func _on_Interact_Area_body_exited(body):
 	player = body
 	player.can_attack = true
 	is_player_in_range = false
-	animationPlayer.play("ShrinkUI")
+	animation_player.play("ShrinkUI")
 
 func toggle_ui(visibility: bool = false):
 	label.visible = visibility
@@ -103,4 +108,6 @@ func fix_ship():
 	$BrokenParticles.visible = false
 	$BrokenParticles2.visible = false
 	$Smoke.visible = false
+	label.visible = true
+	fixBar.visible = false
 	is_fixed = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Player/$Kryll-Rogue-01.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Effects/SlashSpecial1.png" type="Texture" id=5]
 [ext_resource path="res://Utils/Hitbox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Utils/Hurtbox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Audio/Open1.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Audio/Slash1.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Audio/Equip1.ogg" type="AudioStream" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.5
@@ -349,58 +352,58 @@ graph_offset = Vector2( -96, -39 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
-[sub_resource type="StyleBoxFlat" id=25]
+[sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.47451, 0.721569, 0.780392, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="StyleBoxFlat" id=26]
+[sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="DynamicFont" id=27]
+[sub_resource type="DynamicFont" id=26]
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=28]
+[sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0.772549, 0.317647, 0.317647, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="StyleBoxFlat" id=29]
+[sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="AtlasTexture" id=36]
+[sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=37]
+[sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 5 )
 region = Rect2( 192, 0, 192, 192 )
 
-[sub_resource type="AtlasTexture" id=38]
+[sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 5 )
 region = Rect2( 384, 0, 192, 192 )
 
-[sub_resource type="SpriteFrames" id=35]
+[sub_resource type="SpriteFrames" id=32]
 animations = [ {
-"frames": [ SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), null ],
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), null ],
 "loop": false,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=39]
+[sub_resource type="CapsuleShape2D" id=33]
 radius = 17.8989
 height = 0.0
 
@@ -445,7 +448,6 @@ smoothing_enabled = true
 smoothing_speed = 10.0
 
 [node name="Health" parent="." instance=ExtResource( 3 )]
-max_amount = 0
 
 [node name="Oxygen" parent="." instance=ExtResource( 3 )]
 
@@ -464,8 +466,8 @@ margin_top = 260.0
 margin_right = 232.603
 margin_bottom = 290.0
 rect_rotation = -89.9999
-custom_styles/fg = SubResource( 25 )
-custom_styles/bg = SubResource( 26 )
+custom_styles/fg = SubResource( 24 )
+custom_styles/bg = SubResource( 25 )
 value = 100.0
 percent_visible = false
 __meta__ = {
@@ -477,7 +479,7 @@ margin_left = 45.651
 margin_top = 38.0724
 margin_right = 64.651
 margin_bottom = 62.0724
-custom_fonts/font = SubResource( 27 )
+custom_fonts/font = SubResource( 26 )
 text = "O2"
 align = 1
 __meta__ = {
@@ -490,8 +492,8 @@ margin_top = 260.0
 margin_right = 285.325
 margin_bottom = 290.0
 rect_rotation = -89.9999
-custom_styles/fg = SubResource( 28 )
-custom_styles/bg = SubResource( 29 )
+custom_styles/fg = SubResource( 27 )
+custom_styles/bg = SubResource( 28 )
 value = 50.0
 percent_visible = false
 __meta__ = {
@@ -503,7 +505,7 @@ margin_left = 82.5403
 margin_top = 38.0
 margin_right = 130.54
 margin_bottom = 62.0
-custom_fonts/font = SubResource( 27 )
+custom_fonts/font = SubResource( 26 )
 text = "Health"
 align = 1
 __meta__ = {
@@ -521,7 +523,7 @@ modulate = Color( 1, 0.415686, 0.878431, 1 )
 position = Vector2( -0.471955, -85.1781 )
 rotation = -3.14159
 scale = Vector2( 0.6, 0.6 )
-frames = SubResource( 35 )
+frames = SubResource( 32 )
 frame = 1
 speed_scale = 3.0
 
@@ -538,7 +540,6 @@ disabled = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack/Hitbox"]
 position = Vector2( -10.6624, 270.151 )
-scale = Vector2( 1, 1 )
 polygon = PoolVector2Array( -17.6833, -42.2605, -0.04842, -26.463, 4.83878, -13.641, 3.65341, 0.68049, -2.04847, 14.1836, -27.4259, 29.9928, -16.5362, 28.1961, -5.94423, 23.7397, 8.51404, 14.7522, 16.8818, 2.19556, 18.6754, -14.1052, 13.2475, -27.8231, -0.727715, -38.1774 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 7 )]
@@ -547,7 +548,22 @@ collision_layer = 2
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( -1.25, -1.6146 )
-shape = SubResource( 39 )
+shape = SubResource( 33 )
+
+[node name="PickUpAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -18.0
+pitch_scale = 1.5
+
+[node name="AttackAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -25.0
+pitch_scale = 2.5
+
+[node name="DetachAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -18.0
+pitch_scale = 1.2
 [connection signal="changed" from="Health" to="CanvasLayer/Control/HealthBar" method="set_value"]
 [connection signal="depleted" from="Health" to="." method="_on_Health_depleted"]
 [connection signal="max_changed" from="Health" to="CanvasLayer/Control/HealthBar" method="set_max"]

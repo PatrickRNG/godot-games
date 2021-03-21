@@ -12,6 +12,9 @@ onready var health = $Health
 onready var oxygen = $Oxygen
 onready var o2Timer = $O2Timer
 onready var item_holder = $ItemHolder
+onready var audio_player = $PickUpAudioStreamPlayer
+onready var attack_audio_player = $AttackAudioStreamPlayer
+onready var dettach_audio_player = $DetachAudioStreamPlayer
 onready var attack_sprite = $Attack
 onready var attack_collider = $Attack/Hitbox/CollisionPolygon2D
 onready var animationState = animationTree.get("parameters/playback")
@@ -91,18 +94,20 @@ func setup_o2_meter(regenerate: bool = false, value: int = default_o2_value, wai
 
 func attach_item(partType: int):
 	if item_holder.get_children().size() < 1:
+		audio_player.play()
 		var item_instance = ship_part_node.instance()
 		item_instance.type = partType
 		item_holder.add_child(item_instance)
 		current_holding_item_type = partType
 		can_attack = false
 		# To not attack when pickping up an item
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(1), "timeout")
 		can_attack = true
 
 func detach_item():
 	is_holding = false
 	if item_holder.get_children().size() > 0:
+		dettach_audio_player.play()
 		item_holder.get_children()[0].queue_free()
 		current_holding_item_type = null
 
@@ -111,6 +116,7 @@ func attack_state():
 		attack_sprite.visible = true
 		attack_sprite.frame = 0
 		attack_sprite.play()
+		attack_audio_player.play()
 		attack_collider.disabled = false
 		can_attack = false
 		yield(get_tree().create_timer(0.6), "timeout")
