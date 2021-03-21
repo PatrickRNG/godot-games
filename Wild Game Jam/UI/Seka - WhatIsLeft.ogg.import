@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Seka - WhatIsLeft.ogg-03e6401d8b5a8fd98601fa2102afc259.oggstr"
+
+[deps]
+
+source_file="res://UI/Seka - WhatIsLeft.ogg"
+dest_files=[ "res://.import/Seka - WhatIsLeft.ogg-03e6401d8b5a8fd98601fa2102afc259.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

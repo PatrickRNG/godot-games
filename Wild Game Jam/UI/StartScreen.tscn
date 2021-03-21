@@ -1,0 +1,396 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Player/mplus-1m-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/$Menu_Fog3.png" type="Texture" id=2]
+[ext_resource path="res://UI/StartScreen.gd" type="Script" id=3]
+[ext_resource path="res://UI/Seka - WhatIsLeft.ogg" type="AudioStream" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 1280, 720 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+border_width_left = 80
+border_width_top = 6
+border_width_right = 80
+border_width_bottom = 6
+border_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+shadow_color = Color( 0.254902, 0.254902, 0.254902, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 3, 3 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.521569, 0.521569, 0.521569, 1 )
+border_width_left = 80
+border_width_top = 6
+border_width_right = 80
+border_width_bottom = 6
+border_color = Color( 0.521569, 0.521569, 0.521569, 1 )
+shadow_color = Color( 0.254902, 0.254902, 0.254902, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 3, 3 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.8, 0.8, 0.8, 1 )
+border_width_left = 80
+border_width_top = 6
+border_width_right = 80
+border_width_bottom = 6
+shadow_color = Color( 0.254902, 0.254902, 0.254902, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 3, 3 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=10]
+resource_name = "text_1"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "", "You were going home." ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1, 1.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "text_2"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Strangely, your ship started to breakdown." ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "text_3"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "After such a long trip, you just sit down, exhausted, and try to control the ship enough for a landing somewhere.
+A close planet arrives at your radar. After the stabilization, you just lay down and wait." ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 7.9, 9.5, 12, 13, 16.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.557143, 0.557143, 0.734286, 0.734286, 1.0 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "text_4"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Your ship landed." ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "text_5"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "You woke up at an unfamiliar space.", "" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start_game"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -16.0, -45.0 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "text_1"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "text_2"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "text_3"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "text_4"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "text_5"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=24]
+states/text_1/node = SubResource( 15 )
+states/text_1/position = Vector2( 371, 94.1605 )
+states/text_2/node = SubResource( 16 )
+states/text_2/position = Vector2( 540.333, 95.2963 )
+states/text_3/node = SubResource( 17 )
+states/text_3/position = Vector2( 701.667, 95.7407 )
+states/text_4/node = SubResource( 18 )
+states/text_4/position = Vector2( 877.667, 99 )
+states/text_5/node = SubResource( 19 )
+states/text_5/position = Vector2( 1068.33, 95 )
+transitions = [ "text_2", "text_3", SubResource( 20 ), "text_3", "text_4", SubResource( 21 ), "text_4", "text_5", SubResource( 22 ), "text_1", "text_2", SubResource( 23 ) ]
+start_node = "text_1"
+graph_offset = Vector2( 3, -5 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
+
+[node name="StartScreen" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Panel2" type="Panel" parent="PanelContainer"]
+modulate = Color( 0.164706, 0.164706, 0.164706, 0.0705882 )
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 984.0
+margin_bottom = 560.0
+custom_constants/separation = 125
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+margin_right = 944.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.760784, 0.760784, 0.760784, 1 )
+text = "UNFAMILIAR SPACE"
+align = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+margin_top = 215.0
+margin_right = 944.0
+margin_bottom = 391.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+margin_left = 338.0
+margin_right = 606.0
+margin_bottom = 176.0
+custom_constants/separation = 40
+
+[node name="StartButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+margin_right = 268.0
+margin_bottom = 41.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color_disabled = Color( 0.305882, 0.305882, 0.305882, 1 )
+custom_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
+custom_colors/font_color_hover = Color( 0.305882, 0.305882, 0.305882, 1 )
+custom_colors/font_color_pressed = Color( 0.305882, 0.305882, 0.305882, 1 )
+text = "START"
+
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+margin_top = 81.0
+margin_right = 268.0
+margin_bottom = 122.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color_disabled = Color( 0.305882, 0.305882, 0.305882, 1 )
+custom_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
+custom_colors/font_color_hover = Color( 0.305882, 0.305882, 0.305882, 1 )
+custom_colors/font_color_pressed = Color( 0.305882, 0.305882, 0.305882, 1 )
+text = "QUIT"
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+margin_top = 162.0
+margin_right = 268.0
+margin_bottom = 176.0
+text = "Strangely, your ship started to breakdown."
+percent_visible = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/text_1 = SubResource( 10 )
+anims/text_2 = SubResource( 11 )
+anims/text_3 = SubResource( 12 )
+anims/text_4 = SubResource( 13 )
+anims/text_5 = SubResource( 14 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 24 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 25 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -16.0
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

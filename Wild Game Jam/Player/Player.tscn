@@ -1,9 +1,12 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Player/$Kryll-Rogue-01.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Utils/Health.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/mplus-1m-regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Effects/SlashSpecial1.png" type="Texture" id=5]
+[ext_resource path="res://Utils/Hitbox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Utils/Hurtbox.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.5
@@ -92,6 +95,42 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 1, 0, 1, 2 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Attack:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -0.471955, 25.1402 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Attack:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Attack:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ) ]
+}
 
 [sub_resource type="Animation" id=7]
 length = 0.4
@@ -107,6 +146,42 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 4, 3, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Attack:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, -0.6 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Attack:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -89.9999 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Attack:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -55.4204, -28.788 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -124,6 +199,42 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 7, 6, 7, 8 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Attack:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 50.6501, -28.788 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Attack:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -89.9999 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Attack:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ) ]
+}
 
 [sub_resource type="Animation" id=9]
 length = 0.4
@@ -139,6 +250,42 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 10, 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Attack:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -0.471955, -85.1781 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Attack:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -180.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Attack:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ) ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=10]
@@ -198,29 +345,68 @@ states/Walk/node = SubResource( 19 )
 states/Walk/position = Vector2( 634.161, 173.667 )
 transitions = [ "Idle", "Walk", SubResource( 20 ), "Walk", "Idle", SubResource( 21 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -96, -44 )
+graph_offset = Vector2( -96, -39 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
-[sub_resource type="StyleBoxFlat" id=24]
-bg_color = Color( 0.729412, 0.929412, 1, 1 )
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0.47451, 0.721569, 0.780392, 1 )
 border_width_left = 2
 border_width_top = 2
+border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="StyleBoxFlat" id=25]
+[sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="DynamicFont" id=26]
+[sub_resource type="DynamicFont" id=27]
 font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.772549, 0.317647, 0.317647, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id=29]
+bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 5 )
+region = Rect2( 192, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 5 )
+region = Rect2( 384, 0, 192, 192 )
+
+[sub_resource type="SpriteFrames" id=35]
+animations = [ {
+"frames": [ SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), null ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=39]
+radius = 17.8989
+height = 0.0
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 13
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -236,7 +422,6 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 0.4
 anims/Idle_Down = SubResource( 2 )
 anims/Idle_Left = SubResource( 3 )
 anims/Idle_Right = SubResource( 4 )
@@ -249,17 +434,20 @@ anims/Walk_Up = SubResource( 9 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 22 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 23 )
-parameters/Idle/blend_position = Vector2( 0, 0 )
+parameters/Idle/blend_position = Vector2( -0.00348026, 0.0734768 )
 parameters/Walk/blend_position = Vector2( 0, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 current = true
 smoothing_enabled = true
 smoothing_speed = 10.0
 
 [node name="Health" parent="." instance=ExtResource( 3 )]
+max_amount = 0
+
+[node name="Oxygen" parent="." instance=ExtResource( 3 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -271,14 +459,14 @@ __meta__ = {
 }
 
 [node name="O2Bar" type="ProgressBar" parent="CanvasLayer/Control"]
-margin_left = 40.0
+margin_left = 39.6031
 margin_top = 260.0
-margin_right = 233.0
+margin_right = 232.603
 margin_bottom = 290.0
 rect_rotation = -89.9999
-custom_styles/fg = SubResource( 24 )
-custom_styles/bg = SubResource( 25 )
-value = 50.0
+custom_styles/fg = SubResource( 25 )
+custom_styles/bg = SubResource( 26 )
+value = 100.0
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -289,8 +477,34 @@ margin_left = 45.651
 margin_top = 38.0724
 margin_right = 64.651
 margin_bottom = 62.0724
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 27 )
 text = "O2"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Control"]
+margin_left = 92.3251
+margin_top = 260.0
+margin_right = 285.325
+margin_bottom = 290.0
+rect_rotation = -89.9999
+custom_styles/fg = SubResource( 28 )
+custom_styles/bg = SubResource( 29 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Label" parent="CanvasLayer/Control"]
+margin_left = 82.5403
+margin_top = 38.0
+margin_right = 130.54
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 27 )
+text = "Health"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -301,6 +515,49 @@ autostart = true
 
 [node name="ItemHolder" type="Position2D" parent="."]
 position = Vector2( 0, -101.823 )
-[connection signal="changed" from="Health" to="CanvasLayer/Control/O2Bar" method="set_value"]
-[connection signal="max_changed" from="Health" to="CanvasLayer/Control/O2Bar" method="set_max"]
+
+[node name="Attack" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 0.415686, 0.878431, 1 )
+position = Vector2( -0.471955, -85.1781 )
+rotation = -3.14159
+scale = Vector2( 0.6, 0.6 )
+frames = SubResource( 35 )
+frame = 1
+speed_scale = 3.0
+
+[node name="Hitbox" parent="Attack" instance=ExtResource( 6 )]
+position = Vector2( 629.046, -193.671 )
+rotation = 1.22382
+scale = Vector2( 2.42836, 2.42836 )
+collision_mask = 8
+damage = 5
+
+[node name="CollisionShape2D" parent="Attack/Hitbox" index="0"]
+visible = false
+disabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack/Hitbox"]
+position = Vector2( -10.6624, 270.151 )
+scale = Vector2( 1, 1 )
+polygon = PoolVector2Array( -17.6833, -42.2605, -0.04842, -26.463, 4.83878, -13.641, 3.65341, 0.68049, -2.04847, 14.1836, -27.4259, 29.9928, -16.5362, 28.1961, -5.94423, 23.7397, 8.51404, 14.7522, 16.8818, 2.19556, 18.6754, -14.1052, 13.2475, -27.8231, -0.727715, -38.1774 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0.237228, -8.65399 )
+collision_layer = 2
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( -1.25, -1.6146 )
+shape = SubResource( 39 )
+[connection signal="changed" from="Health" to="CanvasLayer/Control/HealthBar" method="set_value"]
+[connection signal="depleted" from="Health" to="." method="_on_Health_depleted"]
+[connection signal="max_changed" from="Health" to="CanvasLayer/Control/HealthBar" method="set_max"]
+[connection signal="changed" from="Oxygen" to="CanvasLayer/Control/O2Bar" method="set_value"]
+[connection signal="depleted" from="Oxygen" to="." method="_on_Oxygen_depleted"]
+[connection signal="max_changed" from="Oxygen" to="CanvasLayer/Control/O2Bar" method="set_max"]
 [connection signal="timeout" from="O2Timer" to="." method="_on_O2Timer_timeout"]
+[connection signal="animation_finished" from="Attack" to="." method="_on_Attack_animation_finished"]
+[connection signal="is_hit" from="Hurtbox" to="." method="_on_Hurtbox_is_hit"]
+
+[editable path="Attack/Hitbox"]
+
+[editable path="Hurtbox"]

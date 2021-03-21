@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Effects/circle.png" type="Texture" id=1]
+
+[sub_resource type="Curve" id=75]
+_data = [ Vector2( 0, 0.45092 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=76]
+curve = SubResource( 75 )
+
+[sub_resource type="ParticlesMaterial" id=77]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 30.0
+gravity = Vector3( 0, -30, 0 )
+initial_velocity = 35.0
+initial_velocity_random = 0.2
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_curve = SubResource( 76 )
+color = Color( 0.384314, 0.384314, 0.384314, 0.690196 )
+
+[node name="Smoke" type="Node2D"]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 11.8554, -11.7809 )
+amount = 10
+lifetime = 1.2
+process_material = SubResource( 77 )
+texture = ExtResource( 1 )

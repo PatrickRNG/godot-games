@@ -1,19 +1,43 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Ship/SciFi_Warehouse_C.png" type="Texture" id=1]
 [ext_resource path="res://Ship/Ship.gd" type="Script" id=2]
 [ext_resource path="res://Player/mplus-1m-regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://World/SciFi_Warehouse_E.png" type="Texture" id=4]
+[ext_resource path="res://Effects/ClawPhoton.png" type="Texture" id=5]
+[ext_resource path="res://Effects/Cure2.png" type="Texture" id=6]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="Curve" id=75]
+_data = [ Vector2( 0, 0.45092 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=76]
+curve = SubResource( 75 )
+
+[sub_resource type="ParticlesMaterial" id=77]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 30.0
+gravity = Vector3( 0, -30, 0 )
+initial_velocity = 35.0
+initial_velocity_random = 0.2
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 76 )
+color = Color( 0.384314, 0.384314, 0.384314, 0.690196 )
+
+[sub_resource type="StreamTexture" id=78]
+flags = 4
+load_path = "res://.import/circle.png-67f6da3355948eeccb8d32c8d73749bd.stex"
+
+[sub_resource type="AtlasTexture" id=79]
 atlas = ExtResource( 1 )
 region = Rect2( 673, 482, 93, 91 )
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=80]
 radius = 55.208
 height = 115.459
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=81]
 bg_color = Color( 0.419608, 0.419608, 0.419608, 0.235294 )
 border_color = Color( 0.278431, 0.231373, 0.231373, 1 )
 expand_margin_left = 15.0
@@ -21,33 +45,59 @@ expand_margin_right = 15.0
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=82]
 font_data = ExtResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=91]
+bg_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id=92]
+bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="DynamicFont" id=93]
+size = 12
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=83]
 bg_color = Color( 0.278431, 0.278431, 0.278431, 0.392157 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=84]
 atlas = ExtResource( 4 )
 region = Rect2( 303, 57, 13, 25 )
 
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 4 )
-region = Rect2( 251, 9, 23, 32 )
-
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=86]
 atlas = ExtResource( 4 )
 region = Rect2( 251, 155, 26, 27 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 4 )
+region = Rect2( 251, 9, 23, 32 )
+
+[sub_resource type="AtlasTexture" id=94]
+atlas = ExtResource( 4 )
+region = Rect2( 104, 153, 29, 29 )
+
+[sub_resource type="DynamicFont" id=87]
 size = 14
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="DynamicFont" id=95]
+size = 14
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=88]
 resource_name = "GrowPanel"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Control2:rect_scale")
+tracks/0/path = NodePath("UI/Control2:rect_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -59,11 +109,10 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "GrowUI"
+[sub_resource type="Animation" id=89]
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Control:rect_scale")
+tracks/0/path = NodePath("UI/Control:rect_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -75,7 +124,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Control2:rect_scale")
+tracks/1/path = NodePath("UI/Control2:rect_scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -87,11 +136,10 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "ShrinkUI"
+[sub_resource type="Animation" id=90]
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Control:rect_scale")
+tracks/0/path = NodePath("UI/Control:rect_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -117,7 +165,7 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Control2:rect_scale")
+tracks/2/path = NodePath("UI/Control2:rect_scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -129,15 +177,123 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ) ]
 }
 
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 5 )
+region = Rect2( 192, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 5 )
+region = Rect2( 384, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 5 )
+region = Rect2( 576, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 5 )
+region = Rect2( 768, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 5 )
+region = Rect2( 192, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 5 )
+region = Rect2( 384, 192, 192, 192 )
+
+[sub_resource type="SpriteFrames" id=61]
+animations = [ {
+"frames": [ SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), null, null, null, null, null, null, null, null, null, null, null, null, null ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 6 )
+region = Rect2( 192, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 6 )
+region = Rect2( 384, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 6 )
+region = Rect2( 576, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 6 )
+region = Rect2( 768, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=67]
+atlas = ExtResource( 6 )
+region = Rect2( 192, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=68]
+atlas = ExtResource( 6 )
+region = Rect2( 384, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 6 )
+region = Rect2( 576, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 6 )
+region = Rect2( 768, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 6 )
+region = Rect2( 192, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=73]
+atlas = ExtResource( 6 )
+region = Rect2( 384, 384, 192, 192 )
+
+[sub_resource type="SpriteFrames" id=74]
+animations = [ {
+"frames": [ SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Ship" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource( 2 )
 
+[node name="Smoke" type="Node2D" parent="."]
+position = Vector2( 0.308117, -64.9026 )
+rotation = 0.206696
+scale = Vector2( 1.70548, 1.94 )
+
+[node name="Particles2D" type="Particles2D" parent="Smoke"]
+position = Vector2( 21.2717, -10.4938 )
+amount = 10
+lifetime = 1.2
+process_material = SubResource( 77 )
+texture = SubResource( 78 )
+
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -0.44545, -26.2815 )
 scale = Vector2( 2, 2 )
-texture = SubResource( 1 )
+texture = SubResource( 79 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -153,9 +309,12 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_Area"]
 position = Vector2( -2.66968, 19.3552 )
 rotation = 1.57079
-shape = SubResource( 2 )
+shape = SubResource( 80 )
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Node2D" parent="."]
+z_index = 1
+
+[node name="Control" type="Control" parent="UI"]
 margin_top = 92.934
 margin_right = 40.0
 margin_bottom = 132.934
@@ -163,20 +322,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="UI/Control"]
 margin_left = -147.579
 margin_top = -12.8717
 margin_right = 148.421
 margin_bottom = 11.1283
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/normal = SubResource( 81 )
+custom_fonts/font = SubResource( 82 )
 text = "Press \"space\" to enter or attach item"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control2" type="Control" parent="."]
+[node name="FixBar" type="ProgressBar" parent="UI/Control"]
+margin_left = -71.3588
+margin_top = -45.8379
+margin_right = 72.6412
+margin_bottom = -24.8379
+custom_styles/fg = SubResource( 91 )
+custom_styles/bg = SubResource( 92 )
+custom_fonts/font = SubResource( 93 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="UI"]
 margin_left = 218.332
 margin_top = -41.7549
 margin_right = 390.332
@@ -185,91 +356,132 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="Control2"]
+[node name="Panel" type="Panel" parent="UI/Control2"]
 margin_left = -111.991
 margin_top = -82.6274
 margin_right = 112.009
 margin_bottom = 76.3726
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 83 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Control2/Panel"]
+[node name="TextureRect" type="TextureRect" parent="UI/Control2/Panel"]
 modulate = Color( 0.152941, 0.152941, 0.152941, 0.454902 )
 margin_left = 131.012
 margin_top = 24.4683
 margin_right = 144.012
 margin_bottom = 49.4683
 rect_scale = Vector2( 1.5, 1.5 )
-texture = SubResource( 8 )
+texture = SubResource( 84 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect3" type="TextureRect" parent="Control2/Panel"]
+[node name="TextureRect2" type="TextureRect" parent="UI/Control2/Panel"]
+modulate = Color( 0.152941, 0.152941, 0.152941, 0.454902 )
+margin_left = 13.0
+margin_top = 97.0
+margin_right = 39.0
+margin_bottom = 124.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture = SubResource( 86 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="UI/Control2/Panel"]
 modulate = Color( 0.152941, 0.152941, 0.152941, 0.454902 )
 margin_left = 15.1397
 margin_top = 18.5087
 margin_right = 38.1397
 margin_bottom = 50.5087
 rect_scale = Vector2( 1.5, 1.5 )
-texture = SubResource( 10 )
+texture = SubResource( 85 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect2" type="TextureRect" parent="Control2/Panel"]
+[node name="TextureRect4" type="TextureRect" parent="UI/Control2/Panel"]
 modulate = Color( 0.152941, 0.152941, 0.152941, 0.454902 )
-margin_left = 13.3615
-margin_top = 97.4385
-margin_right = 39.3615
-margin_bottom = 124.438
+margin_left = 118.0
+margin_top = 95.0
+margin_right = 147.0
+margin_bottom = 124.0
 rect_scale = Vector2( 1.5, 1.5 )
-texture = SubResource( 9 )
+texture = SubResource( 94 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control2/Panel"]
-margin_left = 161.119
+[node name="Label" type="Label" parent="UI/Control2/Panel"]
+margin_left = 166.173
 margin_top = 31.815
-margin_right = 189.119
+margin_right = 194.173
 margin_bottom = 55.815
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 87 )
 custom_colors/font_color = Color( 0.654902, 0.752941, 0.658824, 1 )
 text = "Done"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Control2/Panel"]
+[node name="Label2" type="Label" parent="UI/Control2/Panel"]
 margin_left = 61.9511
 margin_top = 106.896
 margin_right = 89.9511
 margin_bottom = 130.896
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 87 )
 custom_colors/font_color = Color( 0.654902, 0.752941, 0.658824, 1 )
 text = "Done"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="Control2/Panel"]
+[node name="Label3" type="Label" parent="UI/Control2/Panel"]
 margin_left = 61.5917
 margin_top = 32.2366
 margin_right = 89.5917
 margin_bottom = 56.2366
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 87 )
 custom_colors/font_color = Color( 0.752941, 0.654902, 0.654902, 1 )
 text = "Missing"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label4" type="Label" parent="UI/Control2/Panel"]
+margin_left = 167.395
+margin_top = 106.896
+margin_right = 195.395
+margin_bottom = 130.896
+custom_fonts/font = SubResource( 95 )
+custom_colors/font_color = Color( 0.654902, 0.752941, 0.658824, 1 )
+text = "Done"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/GrowPanel = SubResource( 12 )
-anims/GrowUI = SubResource( 4 )
-anims/ShrinkUI = SubResource( 6 )
+anims/GrowPanel = SubResource( 88 )
+anims/GrowUI = SubResource( 89 )
+anims/ShrinkUI = SubResource( 90 )
+
+[node name="BrokenParticles" type="AnimatedSprite" parent="."]
+position = Vector2( 52.7451, -57.6936 )
+scale = Vector2( 0.671895, 0.671895 )
+frames = SubResource( 61 )
+frame = 14
+speed_scale = 4.0
+playing = true
+
+[node name="BrokenParticles2" type="AnimatedSprite" parent="."]
+modulate = Color( 0.823529, 0.823529, 0.823529, 1 )
+position = Vector2( 21.6841, -27.8296 )
+scale = Vector2( 0.257584, 0.257584 )
+frames = SubResource( 74 )
+frame = 11
+speed_scale = 4.0
+playing = true
 [connection signal="body_entered" from="Interact_Area" to="." method="_on_Interact_Area_body_entered"]
 [connection signal="body_exited" from="Interact_Area" to="." method="_on_Interact_Area_body_exited"]

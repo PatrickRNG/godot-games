@@ -1,0 +1,422 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://Player/mplus-1m-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/$Menu_Fog3.png" type="Texture" id=2]
+[ext_resource path="res://UI/EndScreen.gd" type="Script" id=3]
+[ext_resource path="res://UI/Seka - WhatIsLeft.ogg" type="AudioStream" id=4]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 1280, 720 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+border_width_left = 80
+border_width_top = 6
+border_width_right = 80
+border_width_bottom = 6
+border_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+shadow_color = Color( 0.254902, 0.254902, 0.254902, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 3, 3 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.521569, 0.521569, 0.521569, 1 )
+border_width_left = 80
+border_width_top = 6
+border_width_right = 80
+border_width_bottom = 6
+border_color = Color( 0.521569, 0.521569, 0.521569, 1 )
+shadow_color = Color( 0.254902, 0.254902, 0.254902, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 3, 3 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.8, 0.8, 0.8, 1 )
+border_width_left = 80
+border_width_top = 6
+border_width_right = 80
+border_width_bottom = 6
+shadow_color = Color( 0.254902, 0.254902, 0.254902, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 3, 3 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=27]
+resource_name = "start"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelContainer/Panel:custom_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0666667, 0.0666667, 0.0666667, 0 ), Color( 0.0666667, 0.0666667, 0.0666667, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "You made it," ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1, 1.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PanelContainer/MarginContainer/Rows/TitleLabel:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "" ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 7.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "You fighted strange creatures. Explored weird locations." ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.2, 3.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.55, 0.55, 1.0 ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 9.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "But you made it. You found all the missing parts of your ship, and fixed it." ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.3, 3.1, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.216667, 0.216667, 1.0 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 4.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Now. Go home." ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7, 2.1, 3.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.4, 0.4, 1.0 ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PanelContainer/MarginContainer/Rows/TitleLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 0.760784, 0.760784, 0.760784, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "show_buttons"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitButton:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2.1, 3.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PanelContainer/MarginContainer/Rows/TitleLabel:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "UNFAMILIAR SPACE" ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "start"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "text_1"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "text_2"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "text_3"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "text_4"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "text_5"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=25]
+states/start/node = SubResource( 28 )
+states/start/position = Vector2( 206, 94 )
+states/text_1/node = SubResource( 16 )
+states/text_1/position = Vector2( 371, 94.1605 )
+states/text_2/node = SubResource( 17 )
+states/text_2/position = Vector2( 540.333, 95.2963 )
+states/text_3/node = SubResource( 18 )
+states/text_3/position = Vector2( 701.667, 95.7407 )
+states/text_4/node = SubResource( 19 )
+states/text_4/position = Vector2( 877.667, 99 )
+states/text_5/node = SubResource( 20 )
+states/text_5/position = Vector2( 1068.33, 95 )
+transitions = [ "text_2", "text_3", SubResource( 21 ), "text_3", "text_4", SubResource( 22 ), "text_4", "text_5", SubResource( 23 ), "text_1", "text_2", SubResource( 24 ), "start", "text_1", SubResource( 29 ) ]
+start_node = "start"
+graph_offset = Vector2( 3, -5 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=26]
+
+[node name="StartScreen" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="Panel2" type="Panel" parent="PanelContainer"]
+modulate = Color( 0.164706, 0.164706, 0.164706, 0.0705882 )
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 984.0
+margin_bottom = 560.0
+custom_constants/separation = 125
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 944.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.760784, 0.760784, 0.760784, 1 )
+align = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+margin_top = 215.0
+margin_right = 944.0
+margin_bottom = 310.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+margin_left = 372.0
+margin_right = 572.0
+margin_bottom = 95.0
+custom_constants/separation = 40
+
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 1.40246e-07 )
+margin_right = 200.0
+margin_bottom = 41.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color_disabled = Color( 0.305882, 0.305882, 0.305882, 1 )
+custom_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
+custom_colors/font_color_hover = Color( 0.305882, 0.305882, 0.305882, 1 )
+custom_colors/font_color_pressed = Color( 0.305882, 0.305882, 0.305882, 1 )
+text = "QUIT"
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+margin_top = 81.0
+margin_right = 200.0
+margin_bottom = 95.0
+text = "You made it,"
+percent_visible = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/start = SubResource( 27 )
+anims/text_1 = SubResource( 11 )
+anims/text_2 = SubResource( 12 )
+anims/text_3 = SubResource( 13 )
+anims/text_4 = SubResource( 14 )
+anims/text_5 = SubResource( 15 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 25 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 26 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -16.0
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

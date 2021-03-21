@@ -9,26 +9,33 @@ enum {
 onready var animationTree = $AnimationTree
 onready var camera = $Camera2D
 onready var health = $Health
+onready var oxygen = $Oxygen
 onready var o2Timer = $O2Timer
 onready var item_holder = $ItemHolder
+onready var attack_sprite = $Attack
+onready var attack_collider = $Attack/Hitbox/CollisionPolygon2D
 onready var animationState = animationTree.get("parameters/playback")
 onready var ship_part_node = preload("res://World/Props/ShipPart.tscn")
+onready var game_over_screen = preload("res://UI/GameOverScreen.tscn")
 
 var state = MOVE
 var velocity = Vector2.ZERO
-var speed = 125
+var speed = 135
 var is_in_ship = false
 var regenerating_o2 = false
 var is_holding = false
-var default_o2_value = 1
+var default_o2_value = 0.5
 var default_o2_wait_time = 1
 var o2_value = default_o2_value
 var o2_wait_time = default_o2_wait_time
 var current_holding_item_type
+var can_attack: bool = true
 
 func _ready():
 	manage_camera()
 	animationTree.active = true
+	attack_collider.disabled = true
+	attack_sprite.visible = false
 	o2Timer.wait_time = o2_wait_time
 
 func _physics_process(_delta):
@@ -36,6 +43,9 @@ func _physics_process(_delta):
 		state = SHIP
 	else:
 		state = MOVE
+		
+	if state != SHIP and Input.get_action_strength("action"):
+		attack_state()
 
 	match state:
 		MOVE:
@@ -85,6 +95,10 @@ func attach_item(partType: int):
 		item_instance.type = partType
 		item_holder.add_child(item_instance)
 		current_holding_item_type = partType
+		can_attack = false
+		# To not attack when pickping up an item
+		yield(get_tree().create_timer(0.5), "timeout")
+		can_attack = true
 
 func detach_item():
 	is_holding = false
@@ -92,10 +106,33 @@ func detach_item():
 		item_holder.get_children()[0].queue_free()
 		current_holding_item_type = null
 
+func attack_state():
+	if can_attack:
+		attack_sprite.visible = true
+		attack_sprite.frame = 0
+		attack_sprite.play()
+		attack_collider.disabled = false
+		can_attack = false
+		yield(get_tree().create_timer(0.6), "timeout")
+		can_attack = true
+
 func _on_O2Timer_timeout():
 	if regenerating_o2:
-		health.current += o2_value
+		oxygen.current += o2_value
 		o2Timer.wait_time = o2_wait_time
 	else:
-		health.current -= o2_value
+		oxygen.current -= o2_value
 		o2Timer.wait_time = o2_wait_time
+
+func _on_Attack_animation_finished():
+	attack_collider.disabled = true
+
+func _on_Hurtbox_is_hit():
+	$Hurtbox.hit_effect(self, Color(0.5, 0.5, 0.5))
+
+func _on_Health_depleted():
+	WorldManager.game_over(self, true)
+
+func _on_Oxygen_depleted():
+	WorldManager.game_over(self, false)
+

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World/SciFi_Warehouse_B2.png" type="Texture" id=1]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 529, 590, 94, 82 )
+
+[node name="Plant6" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.953842, -8.80806 )
+scale = Vector2( 2, 2 )
+texture = SubResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -8.86212, -52.7675 )
+polygon = PoolVector2Array( -14.0976, 72.8685, 24.4397, 70.3936, 25.1469, 24.7852, -15.1582, 23.0174 )

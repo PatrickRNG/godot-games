@@ -59,6 +59,8 @@ scale_amount_curve = SubResource( 4 )
 color_ramp = SubResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2147483650
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( -40.1326, -63.1022, -41.2551, 55.3176, -14.316, 85.0628, 173.135, 85.6241, 198.391, 51.389, 201.758, -57.4899, 173.696, -84.9902, -9.26491, -86.1126 )
