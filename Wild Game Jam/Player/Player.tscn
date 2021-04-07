@@ -442,7 +442,6 @@ parameters/Idle/blend_position = Vector2( -0.00348026, 0.0734768 )
 parameters/Walk/blend_position = Vector2( 0, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 current = true
 smoothing_enabled = true
 smoothing_speed = 10.0
@@ -461,9 +460,9 @@ __meta__ = {
 }
 
 [node name="O2Bar" type="ProgressBar" parent="CanvasLayer/Control"]
-margin_left = 39.6031
+margin_left = 38.7622
 margin_top = 260.0
-margin_right = 232.603
+margin_right = 231.762
 margin_bottom = 290.0
 rect_rotation = -89.9999
 custom_styles/fg = SubResource( 24 )

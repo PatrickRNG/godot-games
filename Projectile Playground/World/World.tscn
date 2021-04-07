@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://World/Controls.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 312 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 512 )
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 491.177, 261.069 )
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+[node name="WallCollision" type="CollisionShape2D" parent="Wall"]
+position = Vector2( 0, 296 )
+shape = SubResource( 1 )
+
+[node name="WallCollision2" type="CollisionShape2D" parent="Wall"]
+position = Vector2( 1024, 296 )
+shape = SubResource( 1 )
+
+[node name="WallCollision3" type="CollisionShape2D" parent="Wall"]
+position = Vector2( 512, 0 )
+rotation = 1.57079
+shape = SubResource( 2 )
+
+[node name="WallCollision4" type="CollisionShape2D" parent="Wall"]
+position = Vector2( 512, 600 )
+rotation = 1.57079
+shape = SubResource( 2 )
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 1 )]
