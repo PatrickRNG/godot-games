@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://World/Controls.gd" type="Script" id=1]
+[ext_resource path="res://Utils/PixelCanva.tscn" type="PackedScene" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
@@ -21,29 +22,13 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=4]
 draw_center = false
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color( 0.67451, 0.67451, 0.67451, 1 )
-
-[sub_resource type="StyleBoxFlat" id=7]
-draw_center = false
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color( 0.67451, 0.67451, 0.67451, 1 )
-
-[sub_resource type="StyleBoxFlat" id=8]
-draw_center = false
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color( 0.866667, 0.866667, 0.866667, 1 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 draw_center = false
@@ -51,12 +36,28 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
+border_color = Color( 0.67451, 0.67451, 0.67451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
 border_color = Color( 0.866667, 0.866667, 0.866667, 1 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="StyleBoxFlat" id=7]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.866667, 0.866667, 0.866667, 1 )
+
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 112, 304 )
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="ControlsMenu" type="CanvasLayer"]
 script = ExtResource( 1 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -243,10 +244,10 @@ margin_bottom = 50.0
 margin_right = 105.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
-custom_styles/hover = SubResource( 6 )
-custom_styles/pressed = SubResource( 7 )
-custom_styles/focus = SubResource( 8 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
 toggle_mode = false
 shortcut_in_tooltip = false
 align = 0
@@ -258,12 +259,27 @@ margin_right = 190.0
 margin_bottom = 24.0
 text = "Rainbow"
 
+[node name="PixelEditor" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
+margin_top = 380.0
+margin_right = 190.0
+margin_bottom = 404.0
+dragger_visibility = 1
+
+[node name="CustomProjectileCheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/Rows/PixelEditor"]
+margin_right = 190.0
+margin_bottom = 24.0
+text = "Custom Projectile"
+
+[node name="PixelCanva" parent="PanelContainer/MarginContainer/Rows/PixelEditor" instance=ExtResource( 2 )]
+position = Vector2( 217.26, 59.3133 )
+scale = Vector2( 0.5, 0.5 )
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 visible = false
 position = Vector2( 112, 304 )
-shape = SubResource( 4 )
+shape = SubResource( 8 )
 [connection signal="value_changed" from="PanelContainer/MarginContainer/Rows/FireRate/FireRateSlider" to="." method="_on_FireRateSlider_value_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/Rows/Range/RangeSlider" to="." method="_on_RangeSlider_value_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/Rows/Scale/ScaleSlider" to="." method="_on_ScaleSlider_value_changed"]
@@ -271,3 +287,4 @@ shape = SubResource( 4 )
 [connection signal="value_changed" from="PanelContainer/MarginContainer/Rows/ShotsAngle/ShotAngleSlider" to="." method="_on_ShotAngleSlider_value_changed"]
 [connection signal="color_changed" from="PanelContainer/MarginContainer/Rows/Color/HBoxContainer/ColorPickerButton" to="." method="_on_ColorPickerButton_color_changed"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/Rows/Color/HBoxContainer/RainbowCheckBox" to="." method="_on_RainbowCheckBox_toggled"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/Rows/PixelEditor/CustomProjectileCheckBox" to="." method="_on_CustomProjectileCheckBox_toggled"]

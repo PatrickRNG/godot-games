@@ -4,7 +4,6 @@
 [ext_resource path="res://Projectile/Projectile.gd" type="Script" id=2]
 
 [node name="Projectile" type="Node2D"]
-rotation = -0.785398
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

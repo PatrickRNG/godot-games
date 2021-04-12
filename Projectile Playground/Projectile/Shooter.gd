@@ -9,7 +9,7 @@ var fire_range = ControlManager.properties.fire_range
 var shots = ControlManager.properties.shots
 var shot_angle = ControlManager.properties.shot_angle
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("action"):
 		shoot()
 

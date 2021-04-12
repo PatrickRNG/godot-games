@@ -1566,6 +1566,9 @@ position = Vector2( 596.586, 2980.44 )
 [node name="ForestEnemy2" parent="Props/YSort" instance=ExtResource( 25 )]
 position = Vector2( 2425.06, 2933.89 )
 
+[node name="ShipPart" parent="Props/YSort" instance=ExtResource( 16 )]
+position = Vector2( 1068.04, 778.768 )
+
 [node name="Boundaries_Top_Right" type="Position2D" parent="."]
 position = Vector2( 5423.96, 0.0171108 )
 

@@ -7,5 +7,7 @@ var properties: Dictionary = {
 	"shots": 1,
 	"shot_angle": 1,
 	"color": Color(1, 1, 1, 1),
-	"rainbow": false
+	"rainbow": false,
+	"use_custom_projectile": false,
+	"custom_projectile": null,
 }
