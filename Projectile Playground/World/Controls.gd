@@ -39,3 +39,7 @@ func _on_CustomProjectileCheckBox_toggled(button_pressed):
 		pixel_canva.connect("custom_projectile", self, "update_custom_projectile")
 	elif pixel_canva.is_connected("custom_projectile", self, "update_custom_projectile"):
 		pixel_canva.disconnect("custom_projectile", self, "update_custom_projectile")
+
+func _on_RotationDegreeSlider_value_changed(value):
+	ControlManager.properties.rotation_degrees = value
+	pixel_canva.rotation_degrees = value

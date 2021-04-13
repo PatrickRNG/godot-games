@@ -8,6 +8,7 @@ var fire_rate = ControlManager.properties.fire_rate
 var fire_range = ControlManager.properties.fire_range
 var shots = ControlManager.properties.shots
 var shot_angle = ControlManager.properties.shot_angle
+var projectile_scale = ControlManager.properties.scale
 
 func _process(_delta):
 	if Input.is_action_pressed("action"):
@@ -35,9 +36,10 @@ func shoot() -> void:
 			var aim_direction = global_position.direction_to(get_global_mouse_position())
 			var projectiles_angles = create_angle_spread(shots, shot_angle)
 			var projectile_instance = projectile.instance()
-			projectile_instance.position = shooter_point.global_position
+			projectile_instance.global_position = shooter_point.global_position
 			projectile_instance.direction = aim_direction.rotated(projectiles_angles[i])
 			projectile_instance.look_at(get_global_mouse_position())
+			projectile_instance.rotate(deg2rad(ControlManager.properties.rotation_degrees))
 			get_tree().get_root().add_child(projectile_instance)
 			projectile_instance.remove_projectile(fire_range)
 		shooter_point.position = Vector2(20, 0)

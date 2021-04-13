@@ -18,15 +18,21 @@ func _ready():
 	else:
 		sprite.set_modulate(ControlManager.properties.color)
 	if ControlManager.properties.use_custom_projectile and custom_projectile:
-		var custom_projectile_node = custom_projectile.duplicate()
+		set_custom_projectile()
 		sprite.visible = false
-		custom_projectile_node.scale = Vector2(0.5, 0.5)
-		if ControlManager.properties.rainbow:
-			custom_projectile_node.set_modulate(Color(randf(), randf(), randf()))
-		custom_projectile_node.global_position = Vector2(0, -64)
-		add_child(custom_projectile_node)
 	else:
 		sprite.visible = true
+
+func set_custom_projectile():
+	if custom_projectile:
+		var projectile_instance = custom_projectile.duplicate()
+		if ControlManager.properties.rainbow:
+			projectile_instance.set_modulate(Color(randf(), randf(), randf()))
+#		projectile_instance.position = Vector2(-32 * projectile_scale, -32 * projectile_scale)
+		projectile_instance.position = Vector2(-32 * projectile_scale, -32 * projectile_scale)
+		print_debug(">> ", projectile_scale)
+		projectile_instance.set_scale(Vector2(projectile_scale, projectile_scale))
+		add_child(projectile_instance)
 
 func _process(delta):
 	position += direction * speed * delta

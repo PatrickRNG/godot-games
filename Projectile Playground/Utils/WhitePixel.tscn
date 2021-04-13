@@ -6,6 +6,7 @@
 extents = Vector2( 7.96018, 7.96089 )
 
 [node name="Sprite" type="Sprite"]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 centered = false
 

@@ -220,10 +220,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Color" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
+[node name="RotationDegree" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
 margin_top = 310.0
 margin_right = 190.0
-margin_bottom = 360.0
+margin_bottom = 352.0
+dragger_visibility = 1
+
+[node name="RotationDegreeLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/RotationDegree"]
+margin_right = 190.0
+margin_bottom = 14.0
+text = "Rotation Degree"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RotationDegreeSlider" type="HSlider" parent="PanelContainer/MarginContainer/Rows/RotationDegree"]
+margin_top = 26.0
+margin_right = 190.0
+margin_bottom = 42.0
+custom_styles/slider = SubResource( 2 )
+custom_styles/grabber_area_highlight = SubResource( 3 )
+custom_styles/grabber_area = SubResource( 3 )
+min_value = -90.0
+max_value = 90.0
+step = 15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Color" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
+margin_top = 372.0
+margin_right = 190.0
+margin_bottom = 422.0
 dragger_visibility = 1
 
 [node name="ScaleLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/Color"]
@@ -260,9 +288,9 @@ margin_bottom = 24.0
 text = "Rainbow"
 
 [node name="PixelEditor" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 380.0
+margin_top = 442.0
 margin_right = 190.0
-margin_bottom = 404.0
+margin_bottom = 466.0
 dragger_visibility = 1
 
 [node name="CustomProjectileCheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/Rows/PixelEditor"]
@@ -271,8 +299,9 @@ margin_bottom = 24.0
 text = "Custom Projectile"
 
 [node name="PixelCanva" parent="PanelContainer/MarginContainer/Rows/PixelEditor" instance=ExtResource( 2 )]
-position = Vector2( 217.26, 59.3133 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 302.007, 45.3965 )
+scale = Vector2( 2, 2 )
+z_index = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -285,6 +314,7 @@ shape = SubResource( 8 )
 [connection signal="value_changed" from="PanelContainer/MarginContainer/Rows/Scale/ScaleSlider" to="." method="_on_ScaleSlider_value_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/Rows/Shots/ShotsSlider" to="." method="_on_ShotsSlider_value_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/Rows/ShotsAngle/ShotAngleSlider" to="." method="_on_ShotAngleSlider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/Rows/RotationDegree/RotationDegreeSlider" to="." method="_on_RotationDegreeSlider_value_changed"]
 [connection signal="color_changed" from="PanelContainer/MarginContainer/Rows/Color/HBoxContainer/ColorPickerButton" to="." method="_on_ColorPickerButton_color_changed"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/Rows/Color/HBoxContainer/RainbowCheckBox" to="." method="_on_RainbowCheckBox_toggled"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/Rows/PixelEditor/CustomProjectileCheckBox" to="." method="_on_CustomProjectileCheckBox_toggled"]

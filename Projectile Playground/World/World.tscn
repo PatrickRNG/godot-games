@@ -4,7 +4,7 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 312 )
+extents = Vector2( 10, 309.149 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 512 )
@@ -17,11 +17,11 @@ position = Vector2( 491.177, 261.069 )
 [node name="Wall" type="StaticBody2D" parent="."]
 
 [node name="WallCollision" type="CollisionShape2D" parent="Wall"]
-position = Vector2( 0, 296 )
+position = Vector2( 0, 299.78 )
 shape = SubResource( 1 )
 
 [node name="WallCollision2" type="CollisionShape2D" parent="Wall"]
-position = Vector2( 1024, 296 )
+position = Vector2( 1024, 303.56 )
 shape = SubResource( 1 )
 
 [node name="WallCollision3" type="CollisionShape2D" parent="Wall"]

@@ -10,4 +10,5 @@ var properties: Dictionary = {
 	"rainbow": false,
 	"use_custom_projectile": false,
 	"custom_projectile": null,
+	"rotation_degrees": 0,
 }
