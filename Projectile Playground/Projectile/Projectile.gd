@@ -28,9 +28,8 @@ func set_custom_projectile():
 		var projectile_instance = custom_projectile.duplicate()
 		if ControlManager.properties.rainbow:
 			projectile_instance.set_modulate(Color(randf(), randf(), randf()))
-#		projectile_instance.position = Vector2(-32 * projectile_scale, -32 * projectile_scale)
+		projectile_instance.add_to_group("projectile")
 		projectile_instance.position = Vector2(-32 * projectile_scale, -32 * projectile_scale)
-		print_debug(">> ", projectile_scale)
 		projectile_instance.set_scale(Vector2(projectile_scale, projectile_scale))
 		add_child(projectile_instance)
 

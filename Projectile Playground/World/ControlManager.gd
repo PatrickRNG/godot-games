@@ -12,3 +12,6 @@ var properties: Dictionary = {
 	"custom_projectile": null,
 	"rotation_degrees": 0,
 }
+
+var is_firing = false
+var is_drawing = false

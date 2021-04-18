@@ -3,7 +3,9 @@
 [ext_resource path="res://Projectile/sword_projectile.png" type="Texture" id=1]
 [ext_resource path="res://Projectile/Projectile.gd" type="Script" id=2]
 
-[node name="Projectile" type="Node2D"]
+[node name="Projectile" type="Node2D" groups=[
+"projectile",
+]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
