@@ -27,8 +27,9 @@ position = Vector2( 32, 32 )
 script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
-modulate = Color( 0, 0, 0, 0.117647 )
+modulate = Color( 0.25098, 0.380392, 0.431373, 1 )
 position = Vector2( -32, -32 )
+z_index = -1
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1

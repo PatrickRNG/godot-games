@@ -1,26 +1,29 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://World/Controls.gd" type="Script" id=1]
 [ext_resource path="res://Utils/PixelCanva.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/circle.png" type="Texture" id=3]
+[ext_resource path="res://World/checkbox-checked.png" type="Texture" id=4]
+[ext_resource path="res://World/checkbox.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
+bg_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.392157, 0.392157, 0.392157, 1 )
+border_color = Color( 0.510719, 0.552871, 0.570312, 1 )
 corner_radius_bottom_left = 1
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 1, 1, 1, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
+border_color = Color( 0.203922, 0.317647, 0.364706, 1 )
 
 [sub_resource type="StyleBoxFlat" id=4]
 draw_center = false
@@ -85,7 +88,7 @@ custom_constants/separation = 20
 
 [node name="FireRate" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
 margin_right = 190.0
-margin_bottom = 42.0
+margin_bottom = 41.0
 dragger_visibility = 1
 
 [node name="FireRateLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/FireRate"]
@@ -99,7 +102,10 @@ __meta__ = {
 [node name="FireRateSlider" type="HSlider" parent="PanelContainer/MarginContainer/Rows/FireRate"]
 margin_top = 26.0
 margin_right = 190.0
-margin_bottom = 42.0
+margin_bottom = 41.0
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 3 )
 custom_styles/slider = SubResource( 2 )
 custom_styles/grabber_area_highlight = SubResource( 3 )
 custom_styles/grabber_area = SubResource( 3 )
@@ -108,9 +114,9 @@ step = 0.05
 value = 0.35
 
 [node name="Range" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 62.0
+margin_top = 61.0
 margin_right = 190.0
-margin_bottom = 104.0
+margin_bottom = 102.0
 dragger_visibility = 1
 
 [node name="RangeLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/Range"]
@@ -124,7 +130,10 @@ __meta__ = {
 [node name="RangeSlider" type="HSlider" parent="PanelContainer/MarginContainer/Rows/Range"]
 margin_top = 26.0
 margin_right = 190.0
-margin_bottom = 42.0
+margin_bottom = 41.0
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 3 )
 custom_styles/slider = SubResource( 2 )
 custom_styles/grabber_area_highlight = SubResource( 3 )
 custom_styles/grabber_area = SubResource( 3 )
@@ -136,9 +145,9 @@ __meta__ = {
 }
 
 [node name="Scale" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 124.0
+margin_top = 122.0
 margin_right = 190.0
-margin_bottom = 166.0
+margin_bottom = 163.0
 dragger_visibility = 1
 
 [node name="ScaleLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/Scale"]
@@ -152,22 +161,25 @@ __meta__ = {
 [node name="ScaleSlider" type="HSlider" parent="PanelContainer/MarginContainer/Rows/Scale"]
 margin_top = 26.0
 margin_right = 190.0
-margin_bottom = 42.0
+margin_bottom = 41.0
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 3 )
 custom_styles/slider = SubResource( 2 )
 custom_styles/grabber_area_highlight = SubResource( 3 )
 custom_styles/grabber_area = SubResource( 3 )
 min_value = 0.25
 max_value = 2.0
 step = 0.25
-value = 1.0
+value = 0.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Shots" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 186.0
+margin_top = 183.0
 margin_right = 190.0
-margin_bottom = 228.0
+margin_bottom = 224.0
 dragger_visibility = 1
 
 [node name="ShotsLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/Shots"]
@@ -181,7 +193,10 @@ __meta__ = {
 [node name="ShotsSlider" type="HSlider" parent="PanelContainer/MarginContainer/Rows/Shots"]
 margin_top = 26.0
 margin_right = 190.0
-margin_bottom = 42.0
+margin_bottom = 41.0
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 3 )
 custom_styles/slider = SubResource( 2 )
 custom_styles/grabber_area_highlight = SubResource( 3 )
 custom_styles/grabber_area = SubResource( 3 )
@@ -193,9 +208,9 @@ __meta__ = {
 }
 
 [node name="ShotsAngle" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 248.0
+margin_top = 244.0
 margin_right = 190.0
-margin_bottom = 290.0
+margin_bottom = 285.0
 dragger_visibility = 1
 
 [node name="ShotAngleLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/ShotsAngle"]
@@ -209,7 +224,10 @@ __meta__ = {
 [node name="ShotAngleSlider" type="HSlider" parent="PanelContainer/MarginContainer/Rows/ShotsAngle"]
 margin_top = 26.0
 margin_right = 190.0
-margin_bottom = 42.0
+margin_bottom = 41.0
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 3 )
 custom_styles/slider = SubResource( 2 )
 custom_styles/grabber_area_highlight = SubResource( 3 )
 custom_styles/grabber_area = SubResource( 3 )
@@ -221,9 +239,9 @@ __meta__ = {
 }
 
 [node name="RotationDegree" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 310.0
+margin_top = 305.0
 margin_right = 190.0
-margin_bottom = 352.0
+margin_bottom = 346.0
 dragger_visibility = 1
 
 [node name="RotationDegreeLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/RotationDegree"]
@@ -237,7 +255,10 @@ __meta__ = {
 [node name="RotationDegreeSlider" type="HSlider" parent="PanelContainer/MarginContainer/Rows/RotationDegree"]
 margin_top = 26.0
 margin_right = 190.0
-margin_bottom = 42.0
+margin_bottom = 41.0
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 3 )
 custom_styles/slider = SubResource( 2 )
 custom_styles/grabber_area_highlight = SubResource( 3 )
 custom_styles/grabber_area = SubResource( 3 )
@@ -249,9 +270,9 @@ __meta__ = {
 }
 
 [node name="Color" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 372.0
+margin_top = 366.0
 margin_right = 190.0
-margin_bottom = 422.0
+margin_bottom = 416.0
 dragger_visibility = 1
 
 [node name="ScaleLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/Color"]
@@ -285,17 +306,21 @@ color = Color( 1, 1, 1, 1 )
 margin_left = 109.0
 margin_right = 190.0
 margin_bottom = 24.0
+custom_icons/checked = ExtResource( 4 )
+custom_icons/unchecked = ExtResource( 5 )
 text = "Rainbow"
 
 [node name="PixelEditor" type="VSplitContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 442.0
+margin_top = 436.0
 margin_right = 190.0
-margin_bottom = 466.0
+margin_bottom = 460.0
 dragger_visibility = 1
 
 [node name="CustomProjectileCheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/Rows/PixelEditor"]
 margin_right = 190.0
 margin_bottom = 24.0
+custom_icons/checked = ExtResource( 4 )
+custom_icons/unchecked = ExtResource( 5 )
 text = "Custom Projectile"
 
 [node name="PixelCanva" parent="PanelContainer/MarginContainer/Rows/PixelEditor" instance=ExtResource( 2 )]

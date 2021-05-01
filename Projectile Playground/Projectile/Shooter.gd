@@ -2,6 +2,7 @@ extends Position2D
 
 onready var projectile = preload("res://Projectile/Projectile.tscn")
 onready var shooter_point = $Shooter_Point
+onready var audio_player = $AudioStreamPlayer
 
 var can_fire = true
 var fire_rate = ControlManager.properties.fire_rate
@@ -9,6 +10,9 @@ var fire_range = ControlManager.properties.fire_range
 var shots = ControlManager.properties.shots
 var shot_angle = ControlManager.properties.shot_angle
 var projectile_scale = ControlManager.properties.scale
+
+func _ready():
+	audio_player.playing = false
 
 func _process(_delta):
 	if Input.is_action_pressed("action") and !ControlManager.is_drawing:
@@ -23,6 +27,7 @@ func update_properties():
 	fire_range = ControlManager.properties.fire_range
 	shots = ControlManager.properties.shots
 	shot_angle = ControlManager.properties.shot_angle
+	projectile_scale = ControlManager.properties.scale
 
 func create_angle_spread(projectiles_quantity: int, angle_multiplier: int) -> Array:
 	var projectiles_angles = [0]
@@ -53,6 +58,7 @@ func shoot() -> void:
 			projectile_instance.rotate(deg2rad(ControlManager.properties.rotation_degrees))
 			projectile_instance.remove_projectile(fire_range)
 		shooter_point.position = Vector2(20, 0)
+		audio_player.play()
 		can_fire = false
 		yield(get_tree().create_timer(fire_rate), "timeout")
 		can_fire = true

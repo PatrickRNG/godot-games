@@ -15,6 +15,7 @@ func _on_RangeSlider_value_changed(value):
 
 func _on_ScaleSlider_value_changed(value):
 	ControlManager.properties.scale = value
+	print_debug(">>> scale: ", value)
 
 func _on_ColorPickerButton_color_changed(color):
 	ControlManager.properties.color = color

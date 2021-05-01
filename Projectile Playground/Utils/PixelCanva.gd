@@ -24,7 +24,6 @@ func _ready():
 
 func _process(event):
 	if coord.x >= 0 and coord.y >= 0 and coord.x < 8 and coord.y < 8:
-		print_debug(ControlManager.is_firing)
 		if Input.is_action_pressed("action") and can_draw and !ControlManager.is_firing:
 			var pixel_instance = pixel.instance()
 			pixel_instance.position = Vector2(coord.x * cell_size, coord.y * cell_size)
