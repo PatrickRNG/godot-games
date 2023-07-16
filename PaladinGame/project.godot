@@ -55,6 +55,11 @@ attack={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="world"
+2d_render/layer_2="hitboxes"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
