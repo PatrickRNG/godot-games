@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://w6xb5nkrjppu"]
+[gd_scene load_steps=59 format=3 uid="uid://w6xb5nkrjppu"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_8vg7g"]
 [ext_resource type="Texture2D" uid="uid://cynjadk5q0ro2" path="res://Player/sprites/idle/ready_1.png" id="1_231l4"]
@@ -455,6 +455,12 @@ animation = &"attack_bottom_right"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bd8q2"]
 animation = &"attack_left"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rsivm"]
+animation = &"attack_bottom_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_88hl8"]
+animation = &"attack_bottom_right"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_lgldb"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_n7hjl")
 blend_point_0/pos = Vector2(-1, 0)
@@ -464,6 +470,10 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_sx2ym")
 blend_point_2/pos = Vector2(0, 1)
 blend_point_3/node = SubResource("AnimationNodeAnimation_bd8q2")
 blend_point_3/pos = Vector2(0, -1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_rsivm")
+blend_point_4/pos = Vector2(-0.5, 0.5)
+blend_point_5/node = SubResource("AnimationNodeAnimation_88hl8")
+blend_point_5/pos = Vector2(0.5, 0.5)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_awbw5"]
@@ -562,6 +572,7 @@ script = ExtResource("1_8vg7g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_231l4")
+flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -575,7 +586,7 @@ active = true
 parameters/conditions/attack = false
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
-parameters/Attack/blend_position = Vector2(-0.00337458, 0.00985217)
+parameters/Attack/blend_position = Vector2(-0.00112486, 0.0246305)
 parameters/Idle/blend_position = Vector2(-0.145107, 0.477833)
 parameters/Run/blend_position = Vector2(0, 0)
 
