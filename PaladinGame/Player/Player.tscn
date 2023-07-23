@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://w6xb5nkrjppu"]
+[gd_scene load_steps=65 format=3 uid="uid://w6xb5nkrjppu"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_8vg7g"]
 [ext_resource type="Texture2D" uid="uid://cynjadk5q0ro2" path="res://Player/sprites/idle/ready_1.png" id="1_231l4"]
@@ -801,6 +801,18 @@ animation = &"run_left"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sd54s"]
 animation = &"run_right"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f7a40"]
+animation = &"run_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0rs8x"]
+animation = &"run_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ncdn7"]
+animation = &"run_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7tbe6"]
+animation = &"run_right"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_8luvj"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_f10fp")
 blend_point_0/pos = Vector2(-1, 0)
@@ -810,6 +822,14 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_nehno")
 blend_point_2/pos = Vector2(0, -1)
 blend_point_3/node = SubResource("AnimationNodeAnimation_sd54s")
 blend_point_3/pos = Vector2(0, 1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_f7a40")
+blend_point_4/pos = Vector2(0.4, 0.6)
+blend_point_5/node = SubResource("AnimationNodeAnimation_0rs8x")
+blend_point_5/pos = Vector2(-0.4, 0.6)
+blend_point_6/node = SubResource("AnimationNodeAnimation_ncdn7")
+blend_point_6/pos = Vector2(-0.4, -0.6)
+blend_point_7/node = SubResource("AnimationNodeAnimation_7tbe6")
+blend_point_7/pos = Vector2(0.4, -0.6)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nyn3i"]
@@ -846,7 +866,7 @@ states/Attack/node = SubResource("AnimationNodeBlendSpace2D_lgldb")
 states/Attack/position = Vector2(459, 80)
 states/End/position = Vector2(656, 173)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_aut5w")
-states/Idle/position = Vector2(386, 173)
+states/Idle/position = Vector2(387, 173)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_8luvj")
 states/Run/position = Vector2(533, 173)
 states/Start/position = Vector2(258, 173)
@@ -866,6 +886,7 @@ texture = ExtResource("1_231l4")
 flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="Sprite2D"]
+scale = Vector2(1e-05, 1e-05)
 monitoring = false
 script = ExtResource("3_8c10t")
 
@@ -891,8 +912,8 @@ parameters/conditions/attack = false
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
 parameters/Attack/blend_position = Vector2(-0.00112486, 0.0246305)
-parameters/Idle/blend_position = Vector2(-0.145107, 0.477833)
-parameters/Run/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(-0.00112486, 0.783366)
+parameters/Run/blend_position = Vector2(-0.262092, -0.431452)
 
 [node name="PlayerShape" type="CollisionShape2D" parent="."]
 rotation = 1.57079

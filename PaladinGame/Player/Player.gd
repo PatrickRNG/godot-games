@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Movement
-@export var speed: float = 150
+@export var speed: float = 120
 @export var acceleration: float = 14
 @export var friction: float = 20
 @export var attack_friction: float = 8
@@ -64,7 +64,6 @@ func run_state():
 	if position.distance_to(target) < 10:
 		state = PlayerState.IDLE
 
-
 # Defines the attacking action
 func attack_state():
 	# Applying friction after attack so it doesn't stops abruptly
@@ -79,9 +78,6 @@ func idle_state():
 	# Move the character
 	move_and_slide()
 
-	# Check if the character should start running again
-	if velocity != Vector2.ZERO:
-		state = PlayerState.RUN
 
 # Defines the animations state machine
 func update_animation_parameters():

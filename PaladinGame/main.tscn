@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://w6xb5nkrjppu" path="res://Player/Player.tscn" id="1_gkhy8"]
 [ext_resource type="Script" path="res://Scripts/Resources/Stats.gd" id="2_wesvf"]
 
-[sub_resource type="Resource" id="Resource_lbdn0"]
+[sub_resource type="Resource" id="Resource_jk8w5"]
 resource_local_to_scene = true
 script = ExtResource("2_wesvf")
 max_health = 100
@@ -58,7 +58,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_gkhy8")]
 position = Vector2(200, 455)
-stats = SubResource("Resource_lbdn0")
+stats = SubResource("Resource_jk8w5")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
