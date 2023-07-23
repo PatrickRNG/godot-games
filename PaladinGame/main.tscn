@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgjcwg0vf7621"]
+[gd_scene load_steps=8 format=3 uid="uid://bgjcwg0vf7621"]
 
 [ext_resource type="Texture2D" uid="uid://ci6t1j3rjb6b5" path="res://Assets/winter_forest/seasonal sample (winter).png" id="1_2o2kv"]
 [ext_resource type="PackedScene" uid="uid://w6xb5nkrjppu" path="res://Player/Player.tscn" id="1_gkhy8"]
 [ext_resource type="Script" path="res://Scripts/Resources/Stats.gd" id="2_wesvf"]
+[ext_resource type="Script" path="res://camera_follow.gd" id="3_fmom7"]
 
-[sub_resource type="Resource" id="Resource_jk8w5"]
+[sub_resource type="Resource" id="Resource_3khhw"]
 resource_local_to_scene = true
 script = ExtResource("2_wesvf")
 max_health = 100
@@ -58,9 +59,12 @@ y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_gkhy8")]
 position = Vector2(200, 455)
-stats = SubResource("Resource_jk8w5")
+stats = SubResource("Resource_3khhw")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("tilemap")]
+position_smoothing_speed = 500.0
+script = ExtResource("3_fmom7")
+tilemap = NodePath("../../TileMap")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1

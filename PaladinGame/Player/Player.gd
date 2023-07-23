@@ -3,11 +3,12 @@ extends CharacterBody2D
 # Movement
 @export var speed: float = 120
 @export var acceleration: float = 14
-@export var friction: float = 20
+@export var friction: float = 15
 @export var attack_friction: float = 8
 
 # Resources
 @export var stats: Stats
+@export var spells: Spells
 
 # Nodes
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -18,11 +19,13 @@ var target: Vector2 = position
 enum PlayerState {
 	RUN,
 	IDLE,
-	ATTACK
+	ATTACK,
+	CAST_SPELL
 }
 
 var state: PlayerState = PlayerState.IDLE
 var attack_pressed: bool = false
+var spell_index: int
 
 func _ready():
 	animation_tree.active = true
@@ -39,6 +42,16 @@ func _process(delta):
 	if Input.is_action_just_pressed("attack"):
 		state = PlayerState.ATTACK
 		attack_pressed = true
+	
+	if Input.is_action_just_pressed("cast_spell_1"):
+		state = PlayerState.CAST_SPELL
+		spell_index = 0
+	if Input.is_action_just_pressed("cast_spell_2"):
+		state = PlayerState.CAST_SPELL
+		spell_index = 1
+	if Input.is_action_just_pressed("cast_spell_3"):
+		state = PlayerState.CAST_SPELL
+		spell_index = 2
 
 func _physics_process(_delta):
 	match state:
@@ -48,6 +61,8 @@ func _physics_process(_delta):
 			attack_state()
 		PlayerState.IDLE:
 			idle_state()
+		PlayerState.CAST_SPELL:
+			cast_spell_state()
 
 # Defines the running action
 func run_state():
@@ -78,6 +93,13 @@ func idle_state():
 	# Move the character
 	move_and_slide()
 
+# Decide which spell, based on key_pressed - ok
+# Call cast_spell from that specific spell - the cast_spell fn is flexible
+# cast_spell fn instantiates the spell node
+# The instantiated spell node has to have properties such as damage
+func cast_spell_state():
+#	var spell_index = 0
+	var spell = spells.get_spell(spell_index)
 
 # Defines the animations state machine
 func update_animation_parameters():

@@ -1,0 +1,153 @@
+[gd_scene load_steps=23 format=3 uid="uid://d3vnpdrkol8wf"]
+
+[ext_resource type="Script" path="res://Scripts/Spells/HolySpell.gd" id="1_3jx4q"]
+[ext_resource type="Texture2D" uid="uid://8xs60w3cux7" path="res://Assets/spells/holy_1.png" id="1_f861i"]
+[ext_resource type="Script" path="res://Areas/Hitbox.gd" id="2_lphqf"]
+
+[sub_resource type="Environment" id="Environment_nvq2m"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 1.3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rubru"]
+atlas = ExtResource("1_f861i")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfj5u"]
+atlas = ExtResource("1_f861i")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxbt1"]
+atlas = ExtResource("1_f861i")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tksfs"]
+atlas = ExtResource("1_f861i")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqatj"]
+atlas = ExtResource("1_f861i")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn3xn"]
+atlas = ExtResource("1_f861i")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bpqf"]
+atlas = ExtResource("1_f861i")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udb7l"]
+atlas = ExtResource("1_f861i")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spbgw"]
+atlas = ExtResource("1_f861i")
+region = Rect2(384, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrpll"]
+atlas = ExtResource("1_f861i")
+region = Rect2(432, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc1co"]
+atlas = ExtResource("1_f861i")
+region = Rect2(480, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_revab"]
+atlas = ExtResource("1_f861i")
+region = Rect2(528, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io88a"]
+atlas = ExtResource("1_f861i")
+region = Rect2(576, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hq07b"]
+atlas = ExtResource("1_f861i")
+region = Rect2(624, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp75s"]
+atlas = ExtResource("1_f861i")
+region = Rect2(672, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqvtx"]
+atlas = ExtResource("1_f861i")
+region = Rect2(720, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hq0ty"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rubru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfj5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxbt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tksfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqatj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn3xn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bpqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udb7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spbgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrpll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc1co")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_revab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io88a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hq07b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp75s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqvtx")
+}],
+"loop": true,
+"name": &"cast",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uabco"]
+size = Vector2(70, 71)
+
+[node name="HolySpell" type="Node2D"]
+script = ExtResource("1_3jx4q")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nvq2m")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_hq0ty")
+animation = &"cast"
+frame_progress = 0.677684
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("2_lphqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_uabco")

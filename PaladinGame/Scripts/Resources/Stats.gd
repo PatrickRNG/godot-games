@@ -9,9 +9,6 @@ var current_health: int
 signal health_changed
 signal health_depleted
 
-#func _init():
-#	current_health = max_health
-
 func reset():
 	current_health = max_health
 

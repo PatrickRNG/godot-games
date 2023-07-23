@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Spells" load_steps=2 format=3 uid="uid://bout21ej5xl8h"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Spells.gd" id="1_qxd4t"]
+
+[resource]
+script = ExtResource("1_qxd4t")
+spells = Array[Dictionary]([])
+damage = 0.0
