@@ -1,10 +1,15 @@
 extends CharacterBody2D
 
+# Movement
 @export var speed: float = 150
 @export var acceleration: float = 14
 @export var friction: float = 20
 @export var attack_friction: float = 8
 
+# Resources
+@export var stats: Stats
+
+# Nodes
 @onready var animation_tree : AnimationTree = $AnimationTree
 
 var direction : Vector2 = Vector2.ZERO
@@ -19,6 +24,7 @@ var state: PlayerState = PlayerState.RUN
 
 func _ready():
 	animation_tree.active = true
+	stats.reset()
 
 func _process(_delta):
 	update_animation_parameters()
@@ -34,13 +40,13 @@ func _physics_process(_delta):
 func run_state():
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	
+	# Defining acceleration and friction
 	if direction != Vector2.ZERO:
 		velocity = velocity.move_toward(direction * speed, acceleration)
-		#velocity = direction * speed
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction)
-		#velocity = Vector2.ZERO
 	
+	# Executing movement
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("attack"):

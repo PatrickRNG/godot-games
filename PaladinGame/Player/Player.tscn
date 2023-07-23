@@ -1,8 +1,9 @@
-[gd_scene load_steps=60 format=3 uid="uid://w6xb5nkrjppu"]
+[gd_scene load_steps=61 format=3 uid="uid://w6xb5nkrjppu"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_8vg7g"]
 [ext_resource type="Texture2D" uid="uid://cynjadk5q0ro2" path="res://Player/sprites/idle/ready_1.png" id="1_231l4"]
 [ext_resource type="Texture2D" uid="uid://bj2xgslyf6ow6" path="res://Player/sprites/idle/ready_2.png" id="2_naapa"]
+[ext_resource type="Resource" uid="uid://divnfc13chipq" path="res://Stats_Sheet/PlayerStats.tres" id="2_nbcqq"]
 [ext_resource type="Script" path="res://Areas/Hitbox.gd" id="3_8c10t"]
 [ext_resource type="Texture2D" uid="uid://c03c4b5c266rt" path="res://Player/sprites/idle/ready_3.png" id="3_ja4wj"]
 [ext_resource type="Texture2D" uid="uid://bcdnyjrbu8q7w" path="res://Player/sprites/run/run_1.png" id="4_b1xsx"]
@@ -613,14 +614,16 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-307, -20)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2uu0u"]
-radius = 8.0
-height = 28.0
+radius = 3.0
+height = 14.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_8vg7g")
+stats = ExtResource("2_nbcqq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_231l4")
+offset = Vector2(2.08165e-12, -15)
 flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="Sprite2D"]
@@ -648,5 +651,5 @@ parameters/Idle/blend_position = Vector2(-0.145107, 0.477833)
 parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="PlayerShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+rotation = 1.57079
 shape = SubResource("CapsuleShape2D_2uu0u")
