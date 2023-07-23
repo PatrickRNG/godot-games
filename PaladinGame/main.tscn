@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://w6xb5nkrjppu" path="res://Player/Player.tscn" id="1_gkhy8"]
 [ext_resource type="Script" path="res://Scripts/Resources/Stats.gd" id="2_wesvf"]
 
-[sub_resource type="Resource" id="Resource_np6ny"]
+[sub_resource type="Resource" id="Resource_lbdn0"]
 resource_local_to_scene = true
 script = ExtResource("2_wesvf")
 max_health = 100
@@ -57,8 +57,8 @@ sources/0 = SubResource("TileSetAtlasSource_uh6n7")
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_gkhy8")]
-position = Vector2(261, 544)
-stats = SubResource("Resource_np6ny")
+position = Vector2(200, 455)
+stats = SubResource("Resource_lbdn0")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
@@ -76,4 +76,4 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array(1376262, 720896, 0, 1310730, 720896, 0, 1441801, 720896, 0, 1245197, 720896, 0, 1507340, 720896, 0, 1376273, 720896, 0, 1310741, 720896, 0, 1376281, 720896, 0, 1966109, 720896, 0, 1835032, 720896, 0, 2031633, 720896, 0)
+layer_1/tile_data = PackedInt32Array(1376262, 720896, 0, 1310730, 720896, 0, 1245197, 720896, 0, 1376273, 720896, 0, 1310741, 720896, 0, 1376281, 720896, 0)

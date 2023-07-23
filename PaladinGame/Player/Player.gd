@@ -10,9 +10,10 @@ extends CharacterBody2D
 @export var stats: Stats
 
 # Nodes
-@onready var animation_tree : AnimationTree = $AnimationTree
+@onready var animation_tree: AnimationTree = $AnimationTree
 
-var direction : Vector2 = Vector2.ZERO
+var direction: Vector2 = Vector2.ZERO
+var target: Vector2 = position
 
 enum PlayerState {
 	RUN,
@@ -20,14 +21,24 @@ enum PlayerState {
 	ATTACK
 }
 
-var state: PlayerState = PlayerState.RUN
+var state: PlayerState = PlayerState.IDLE
+var attack_pressed: bool = false
 
 func _ready():
 	animation_tree.active = true
 	stats.reset()
 
-func _process(_delta):
+func _process(delta):
 	update_animation_parameters()
+	
+	if Input.is_action_pressed("left_click"):
+		target = get_global_mouse_position()
+		if not attack_pressed:
+			state = PlayerState.RUN
+	
+	if Input.is_action_just_pressed("attack"):
+		state = PlayerState.ATTACK
+		attack_pressed = true
 
 func _physics_process(_delta):
 	match state:
@@ -35,28 +46,42 @@ func _physics_process(_delta):
 			run_state()
 		PlayerState.ATTACK:
 			attack_state()
+		PlayerState.IDLE:
+			idle_state()
 
 # Defines the running action
 func run_state():
-	direction = Input.get_vector("left", "right", "up", "down").normalized()
+	# Calculate the direction towards the target
+	direction = (target - position).normalized()
 	
-	# Defining acceleration and friction
-	if direction != Vector2.ZERO:
-		velocity = velocity.move_toward(direction * speed, acceleration)
-	else:
-		velocity = velocity.move_toward(Vector2.ZERO, friction)
+	# Calculate acceleration
+	velocity = velocity.move_toward(direction * speed, acceleration)
 	
-	# Executing movement
+	# Move the character
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("attack"):
-		state = PlayerState.ATTACK
+	# Check if the target is reached
+	if position.distance_to(target) < 10:
+		state = PlayerState.IDLE
+
 
 # Defines the attacking action
 func attack_state():
 	# Applying friction after attack so it doesn't stops abruptly
 	velocity = velocity.move_toward(Vector2.ZERO, attack_friction)
+	target = position
 	move_and_slide()
+
+func idle_state():
+	# Apply friction to slow down the character
+	velocity = velocity.move_toward(Vector2.ZERO, friction)
+	
+	# Move the character
+	move_and_slide()
+
+	# Check if the character should start running again
+	if velocity != Vector2.ZERO:
+		state = PlayerState.RUN
 
 # Defines the animations state machine
 func update_animation_parameters():
@@ -82,3 +107,4 @@ func update_animation_parameters():
 # Triggered after attack animation is finished, so it can run again
 func _finished_attack():
 	state = PlayerState.RUN
+	attack_pressed = false
