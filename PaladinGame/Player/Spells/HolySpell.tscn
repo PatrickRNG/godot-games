@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://d3vnpdrkol8wf"]
 
-[ext_resource type="Script" path="res://Scripts/Spells/HolySpell.gd" id="1_3jx4q"]
 [ext_resource type="Texture2D" uid="uid://8xs60w3cux7" path="res://Assets/spells/holy_1.png" id="1_f861i"]
+[ext_resource type="Script" path="res://Player/Spells/HolySpell.gd" id="1_m6cq7"]
 [ext_resource type="Script" path="res://Areas/Hitbox.gd" id="2_lphqf"]
 
 [sub_resource type="Environment" id="Environment_nvq2m"]
@@ -124,30 +124,33 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cqvtx")
 }],
-"loop": true,
+"loop": false,
 "name": &"cast",
 "speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uabco"]
-size = Vector2(70, 71)
+size = Vector2(48, 48)
 
 [node name="HolySpell" type="Node2D"]
-script = ExtResource("1_3jx4q")
+script = ExtResource("1_m6cq7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nvq2m")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(1.5, 1.5, 1.5, 1)
-scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_hq0ty")
 animation = &"cast"
-frame_progress = 0.677684
+offset = Vector2(0, -21.515)
 
 [node name="Hitbox" type="Area2D" parent="."]
 script = ExtResource("2_lphqf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -0.5)
+position = Vector2(0, -22)
 shape = SubResource("RectangleShape2D_uabco")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]

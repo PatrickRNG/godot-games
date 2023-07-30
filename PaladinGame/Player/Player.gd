@@ -8,22 +8,21 @@ extends CharacterBody2D
 
 # Resources
 @export var stats: Stats
-@export var spells: Spells
 
 # Nodes
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var spellsManager: SpellManager = $SpellManager
 
 var direction: Vector2 = Vector2.ZERO
 var target: Vector2 = position
 
-enum PlayerState {
+enum Player_State {
 	RUN,
 	IDLE,
-	ATTACK,
-	CAST_SPELL
+	ATTACK
 }
 
-var state: PlayerState = PlayerState.IDLE
+var state: Player_State = Player_State.IDLE
 var attack_pressed: bool = false
 var spell_index: int
 
@@ -37,32 +36,36 @@ func _process(delta):
 	if Input.is_action_pressed("left_click"):
 		target = get_global_mouse_position()
 		if not attack_pressed:
-			state = PlayerState.RUN
-	
+			state = Player_State.RUN
+
 	if Input.is_action_just_pressed("attack"):
-		state = PlayerState.ATTACK
+		state = Player_State.ATTACK
 		attack_pressed = true
 	
 	if Input.is_action_just_pressed("cast_spell_1"):
-		state = PlayerState.CAST_SPELL
-		spell_index = 0
+		var spell: Spell = spellsManager.get_spell(spell_index)
+		
+		if not spellsManager.is_spell_on_cooldown(spell.name):
+			spellsManager.cast_spell(spell_index)
+			attack_pressed = true
+			state = Player_State.ATTACK
+			spell_index = 0
+			cast_spell_state(spell)
 	if Input.is_action_just_pressed("cast_spell_2"):
-		state = PlayerState.CAST_SPELL
+		state = Player_State.ATTACK
 		spell_index = 1
 	if Input.is_action_just_pressed("cast_spell_3"):
-		state = PlayerState.CAST_SPELL
+		state = Player_State.ATTACK
 		spell_index = 2
 
 func _physics_process(_delta):
 	match state:
-		PlayerState.RUN:
+		Player_State.RUN:
 			run_state()
-		PlayerState.ATTACK:
+		Player_State.ATTACK:
 			attack_state()
-		PlayerState.IDLE:
+		Player_State.IDLE:
 			idle_state()
-		PlayerState.CAST_SPELL:
-			cast_spell_state()
 
 # Defines the running action
 func run_state():
@@ -77,9 +80,9 @@ func run_state():
 	
 	# Check if the target is reached
 	if position.distance_to(target) < 10:
-		state = PlayerState.IDLE
+		state = Player_State.IDLE
 
-# Defines the attacking action
+# Defines the attacking ac	tion
 func attack_state():
 	# Applying friction after attack so it doesn't stops abruptly
 	velocity = velocity.move_toward(Vector2.ZERO, attack_friction)
@@ -93,13 +96,11 @@ func idle_state():
 	# Move the character
 	move_and_slide()
 
-# Decide which spell, based on key_pressed - ok
-# Call cast_spell from that specific spell - the cast_spell fn is flexible
-# cast_spell fn instantiates the spell node
-# The instantiated spell node has to have properties such as damage
-func cast_spell_state():
-#	var spell_index = 0
-	var spell = spells.get_spell(spell_index)
+func cast_spell_state(spell: Spell):
+	velocity = velocity.move_toward(Vector2.ZERO, attack_friction)
+	target = position
+	move_and_slide()
+
 
 # Defines the animations state machine
 func update_animation_parameters():
@@ -110,7 +111,7 @@ func update_animation_parameters():
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = true
 	
-	if Input.is_action_just_pressed("attack"):
+	if attack_pressed:
 		animation_tree["parameters/conditions/is_moving"] = false
 		animation_tree["parameters/conditions/attack"] = true
 	else:
@@ -121,8 +122,9 @@ func update_animation_parameters():
 		animation_tree["parameters/Idle/blend_position"] = direction
 		animation_tree["parameters/Run/blend_position"] = direction
 		animation_tree["parameters/Attack/blend_position"] = direction
+		animation_tree["parameters/CastSpell/blend_position"] = direction
 
-# Triggered after attack animation is finished, so it can run again
+# Triggered after attack/cast animation is finished, so it can run again
 func _finished_attack():
-	state = PlayerState.RUN
+	state = Player_State.RUN
 	attack_pressed = false

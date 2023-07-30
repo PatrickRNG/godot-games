@@ -1,13 +1,14 @@
-[gd_scene load_steps=66 format=3 uid="uid://w6xb5nkrjppu"]
+[gd_scene load_steps=76 format=3 uid="uid://w6xb5nkrjppu"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_8vg7g"]
 [ext_resource type="Texture2D" uid="uid://cynjadk5q0ro2" path="res://Player/sprites/idle/ready_1.png" id="1_231l4"]
 [ext_resource type="Texture2D" uid="uid://bj2xgslyf6ow6" path="res://Player/sprites/idle/ready_2.png" id="2_naapa"]
 [ext_resource type="Resource" uid="uid://divnfc13chipq" path="res://Stats_Sheet/PlayerStats.tres" id="2_nbcqq"]
 [ext_resource type="Script" path="res://Areas/Hitbox.gd" id="3_8c10t"]
-[ext_resource type="Resource" uid="uid://bout21ej5xl8h" path="res://Stats_Sheet/PlayerSpells.tres" id="3_godp8"]
 [ext_resource type="Texture2D" uid="uid://c03c4b5c266rt" path="res://Player/sprites/idle/ready_3.png" id="3_ja4wj"]
+[ext_resource type="Script" path="res://Player/Spell_manager.gd" id="3_jil45"]
 [ext_resource type="Texture2D" uid="uid://bcdnyjrbu8q7w" path="res://Player/sprites/run/run_1.png" id="4_b1xsx"]
+[ext_resource type="Resource" uid="uid://cfotay8vvql6a" path="res://Scripts/Spells/HolySpell.tres" id="4_e3e4o"]
 [ext_resource type="Texture2D" uid="uid://chx6h574w1oju" path="res://Player/sprites/run/run_2.png" id="5_id8nq"]
 [ext_resource type="Texture2D" uid="uid://b188raukhagyc" path="res://Player/sprites/run/run_3.png" id="6_goj8q"]
 [ext_resource type="Texture2D" uid="uid://dqa5pged4b0o4" path="res://Player/sprites/run/run_4.png" id="7_224wq"]
@@ -767,6 +768,38 @@ blend_point_5/node = SubResource("AnimationNodeAnimation_88hl8")
 blend_point_5/pos = Vector2(0.5, 0.5)
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5cnki"]
+animation = &"attack_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iwbgp"]
+animation = &"attack_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wsgwh"]
+animation = &"attack_bottom_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kdewt"]
+animation = &"attack_bottom_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gdl4j"]
+animation = &"attack_bottom_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mk5l7"]
+animation = &"attack_bottom_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_15v1e"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_5cnki")
+blend_point_0/pos = Vector2(1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_iwbgp")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_wsgwh")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_kdewt")
+blend_point_3/pos = Vector2(0, -1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_gdl4j")
+blend_point_4/pos = Vector2(-0.5, 0.6)
+blend_point_5/node = SubResource("AnimationNodeAnimation_mk5l7")
+blend_point_5/pos = Vector2(0.5, 0.6)
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_awbw5"]
 animation = &"idle_left"
 
@@ -862,17 +895,28 @@ advance_condition = &"is_moving"
 advance_mode = 2
 advance_condition = &"attack"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lay3h"]
+advance_mode = 2
+advance_condition = &"cast"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wbntp"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_i6fau"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_lgldb")
-states/Attack/position = Vector2(459, 80)
-states/End/position = Vector2(656, 173)
+states/Attack/position = Vector2(399, 50)
+states/CastSpell/node = SubResource("AnimationNodeBlendSpace2D_15v1e")
+states/CastSpell/position = Vector2(387, 292)
+states/End/position = Vector2(840, 197)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_aut5w")
 states/Idle/position = Vector2(387, 173)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_8luvj")
 states/Run/position = Vector2(533, 173)
 states/Start/position = Vector2(258, 173)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_nyn3i"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_el4p6"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_eu8ku"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_tcnxj"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_jyrot"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_j16h2"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_fwhnh")]
-graph_offset = Vector2(-307, -20)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_nyn3i"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_el4p6"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_eu8ku"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_tcnxj"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_jyrot"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_j16h2"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_fwhnh"), "Idle", "CastSpell", SubResource("AnimationNodeStateMachineTransition_lay3h"), "CastSpell", "Idle", SubResource("AnimationNodeStateMachineTransition_wbntp")]
+graph_offset = Vector2(-223, 34)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2uu0u"]
 radius = 3.0
@@ -881,14 +925,17 @@ height = 14.0
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_8vg7g")
 stats = ExtResource("2_nbcqq")
-spells = ExtResource("3_godp8")
+
+[node name="SpellManager" type="Node" parent="."]
+script = ExtResource("3_jil45")
+spell_slots = Array[Resource("res://Scripts/Spells/Spell_class.gd")]([ExtResource("4_e3e4o"), null, null])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_231l4")
+texture = ExtResource("2_naapa")
+flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="Sprite2D"]
 scale = Vector2(1e-05, 1e-05)
-monitoring = false
 script = ExtResource("3_8c10t")
 
 [node name="attack_1_polygon" type="CollisionPolygon2D" parent="Sprite2D/Hitbox"]
@@ -901,8 +948,6 @@ disabled = true
 visible = false
 polygon = PackedVector2Array(-8, -10, -20, -13, -34, -11, -40, -4, -39, 4, -28, 12, -13, 16, 10, 15, 23, 14, 23, 11, 4, 11, -16, 8, -25, 1, -25, -3, -17, -7, -10, -7)
 
-[node name="SpellManager" type="Node" parent="."]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_so5x4")
@@ -912,11 +957,13 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_i6fau")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
+parameters/conditions/cast = false
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
-parameters/Attack/blend_position = Vector2(-0.00112486, 0.0246305)
-parameters/Idle/blend_position = Vector2(-0.00112486, 0.783366)
-parameters/Run/blend_position = Vector2(-0.262092, -0.431452)
+parameters/Attack/blend_position = Vector2(0, 0)
+parameters/CastSpell/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="PlayerShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 16)

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=2 format=3 uid="uid://cfotay8vvql6a"]
+
+[ext_resource type="Script" path="res://Scripts/Spells/Spell_class.gd" id="1_sbxia"]
+
+[resource]
+script = ExtResource("1_sbxia")
+name = "Holy Beam"
+damage = 10
+cast_type = 0
+spell_scene_path = "res://Player/Spells/HolySpell.tscn"
+cooldown = 3.0
