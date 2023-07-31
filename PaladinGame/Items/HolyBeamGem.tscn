@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7boekqvy2hiw"]
+
+[ext_resource type="PackedScene" uid="uid://c63jwa3moxyfm" path="res://Items/BaseItem.tscn" id="1_d71uk"]
+[ext_resource type="Script" path="res://Scripts/Resources/Item.gd" id="2_dpqvt"]
+[ext_resource type="Texture2D" uid="uid://dmtftocjj0k77" path="res://Assets/items/books.png" id="2_w7r0g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5h6k"]
+atlas = ExtResource("2_w7r0g")
+region = Rect2(97, 32, 13, 16)
+
+[sub_resource type="Resource" id="Resource_51djy"]
+resource_local_to_scene = true
+script = ExtResource("2_dpqvt")
+name = "Holy Beam Gem"
+sprite = SubResource("AtlasTexture_r5h6k")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic2wf"]
+resource_local_to_scene = true
+atlas = ExtResource("2_w7r0g")
+region = Rect2(97, 32, 13, 16)
+
+[node name="HolyBeamGem" instance=ExtResource("1_d71uk")]
+itemStats = SubResource("Resource_51djy")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_ic2wf")

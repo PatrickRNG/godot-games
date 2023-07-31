@@ -15,7 +15,6 @@ func assign_spell():
 
 func cast_spell(spell_index: int) -> void:
 	var spell_to_cast: Spell = get_spell(spell_index)
-	print(spell_cooldowns)
 	
 	if not is_spell_on_cooldown(spell_to_cast.name):
 		match spell_to_cast.cast_type:

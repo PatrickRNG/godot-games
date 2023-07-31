@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_8vg7g"]
 [ext_resource type="Texture2D" uid="uid://cynjadk5q0ro2" path="res://Player/sprites/idle/ready_1.png" id="1_231l4"]
+[ext_resource type="Resource" uid="uid://divnfc13chipq" path="res://Resources/PlayerStats.tres" id="2_5cv8b"]
 [ext_resource type="Texture2D" uid="uid://bj2xgslyf6ow6" path="res://Player/sprites/idle/ready_2.png" id="2_naapa"]
-[ext_resource type="Resource" uid="uid://divnfc13chipq" path="res://Stats_Sheet/PlayerStats.tres" id="2_nbcqq"]
 [ext_resource type="Script" path="res://Areas/Hitbox.gd" id="3_8c10t"]
 [ext_resource type="Texture2D" uid="uid://c03c4b5c266rt" path="res://Player/sprites/idle/ready_3.png" id="3_ja4wj"]
 [ext_resource type="Script" path="res://Player/Spell_manager.gd" id="3_jil45"]
@@ -79,7 +79,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-10, -8.5)]
+"values": [Vector2(-10, -22)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -205,7 +205,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(10, -8.5)]
+"values": [Vector2(10, -22)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -331,7 +331,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-10, -8.5)]
+"values": [Vector2(-10, -22)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -457,7 +457,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(10, -8.5)]
+"values": [Vector2(10, -22)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -584,7 +584,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, -13)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -625,7 +625,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, -13)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -666,7 +666,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, -13)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -707,7 +707,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, -13)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -920,33 +920,31 @@ graph_offset = Vector2(-223, 34)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2uu0u"]
 radius = 3.0
-height = 14.0
+height = 16.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_8vg7g")
-stats = ExtResource("2_nbcqq")
+stats = ExtResource("2_5cv8b")
 
 [node name="SpellManager" type="Node" parent="."]
 script = ExtResource("3_jil45")
 spell_slots = Array[Resource("res://Scripts/Spells/Spell_class.gd")]([ExtResource("4_e3e4o"), null, null])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_naapa")
-flip_h = true
+texture = ExtResource("1_231l4")
 
 [node name="Hitbox" type="Area2D" parent="Sprite2D"]
-scale = Vector2(1e-05, 1e-05)
 script = ExtResource("3_8c10t")
 
 [node name="attack_1_polygon" type="CollisionPolygon2D" parent="Sprite2D/Hitbox"]
-visible = false
-position = Vector2(20, 1)
+position = Vector2(20, -13)
 polygon = PackedVector2Array(-47, -14, -27, -17, -10, -14, -2, -10, 2, -3, 0, 1, -5, 5, -11, 8, -8, 14, 2, 12, 10, 7, 14, -1, 13, -11, 1, -19, -16, -21, -35, -20, -47, -18)
-disabled = true
 
 [node name="attack_2_polygon" type="CollisionPolygon2D" parent="Sprite2D/Hitbox"]
 visible = false
+position = Vector2(0, -13)
 polygon = PackedVector2Array(-8, -10, -20, -13, -34, -11, -40, -4, -39, 4, -28, 12, -13, 16, 10, 15, 23, 14, 23, 11, 4, 11, -16, 8, -25, 1, -25, -3, -17, -7, -10, -7)
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -966,6 +964,6 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="PlayerShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 16)
+position = Vector2(0, 2)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_2uu0u")

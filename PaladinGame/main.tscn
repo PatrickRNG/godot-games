@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgjcwg0vf7621"]
+[gd_scene load_steps=13 format=3 uid="uid://bgjcwg0vf7621"]
 
 [ext_resource type="Texture2D" uid="uid://ci6t1j3rjb6b5" path="res://Assets/winter_forest/seasonal sample (winter).png" id="1_2o2kv"]
 [ext_resource type="PackedScene" uid="uid://w6xb5nkrjppu" path="res://Player/Player.tscn" id="1_gkhy8"]
 [ext_resource type="Script" path="res://Scripts/Resources/Stats.gd" id="2_wesvf"]
 [ext_resource type="Script" path="res://camera_follow.gd" id="3_fmom7"]
+[ext_resource type="PackedScene" uid="uid://b7boekqvy2hiw" path="res://Items/HolyBeamGem.tscn" id="5_m1ydo"]
+[ext_resource type="Script" path="res://Scripts/Resources/Item.gd" id="6_ory03"]
+[ext_resource type="Texture2D" uid="uid://dmtftocjj0k77" path="res://Assets/items/books.png" id="7_2kj3s"]
 
-[sub_resource type="Resource" id="Resource_gncsi"]
+[sub_resource type="Resource" id="Resource_37h16"]
 resource_local_to_scene = true
 script = ExtResource("2_wesvf")
 max_health = 100
@@ -54,12 +57,22 @@ texture = ExtResource("1_2o2kv")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_uh6n7")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5h6k"]
+atlas = ExtResource("7_2kj3s")
+region = Rect2(97, 32, 13, 16)
+
+[sub_resource type="Resource" id="Resource_bcgof"]
+resource_local_to_scene = true
+script = ExtResource("6_ory03")
+name = "Holy Beam Gem"
+sprite = SubResource("AtlasTexture_r5h6k")
+
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_gkhy8")]
 position = Vector2(200, 455)
-stats = SubResource("Resource_gncsi")
+stats = SubResource("Resource_37h16")
 
 [node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("tilemap")]
 position_smoothing_speed = 500.0
@@ -81,3 +94,7 @@ layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(1376262, 720896, 0, 1310730, 720896, 0, 1245197, 720896, 0, 1376273, 720896, 0, 1310741, 720896, 0, 1376281, 720896, 0)
+
+[node name="HolyBeamGem" parent="." instance=ExtResource("5_m1ydo")]
+position = Vector2(313, 479)
+itemStats = SubResource("Resource_bcgof")

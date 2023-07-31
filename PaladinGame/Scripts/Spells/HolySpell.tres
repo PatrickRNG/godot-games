@@ -8,4 +8,4 @@ name = "Holy Beam"
 damage = 10
 cast_type = 0
 spell_scene_path = "res://Player/Spells/HolySpell.tscn"
-cooldown = 3.0
+cooldown = 2.0

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://siqwpq8k4pdj"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Item.gd" id="1_sy0be"]
+[ext_resource type="Texture2D" uid="uid://dmtftocjj0k77" path="res://Assets/items/books.png" id="2_6yqrg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5h6k"]
+atlas = ExtResource("2_6yqrg")
+region = Rect2(97, 32, 13, 16)
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_sy0be")
+name = "Holy Beam Gem"
+sprite = SubResource("AtlasTexture_r5h6k")

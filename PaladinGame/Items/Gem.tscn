@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://gjmoybwnk2on"]
+
+[ext_resource type="Texture2D" uid="uid://dmtftocjj0k77" path="res://Assets/items/books.png" id="2_jl7bj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uwlv"]
+atlas = ExtResource("2_jl7bj")
+region = Rect2(97, 32, 13, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4eahd"]
+radius = 48.4691
+
+[node name="Gem" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_3uwlv")
+offset = Vector2(0, -7.315)
+
+[node name="Pickup_Radius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup_Radius"]
+position = Vector2(-0.00509167, -3.69895)
+shape = SubResource("CircleShape2D_4eahd")
+
+[connection signal="body_entered" from="Pickup_Radius" to="." method="_on_pickup_radius_body_entered"]

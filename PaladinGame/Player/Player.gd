@@ -35,7 +35,7 @@ func _process(delta):
 	
 	if Input.is_action_pressed("left_click"):
 		target = get_global_mouse_position()
-		if not attack_pressed:
+		if not attack_pressed and target.distance_to(position) > 10:
 			state = Player_State.RUN
 
 	if Input.is_action_just_pressed("attack"):
@@ -43,14 +43,8 @@ func _process(delta):
 		attack_pressed = true
 	
 	if Input.is_action_just_pressed("cast_spell_1"):
-		var spell: Spell = spellsManager.get_spell(spell_index)
-		
-		if not spellsManager.is_spell_on_cooldown(spell.name):
-			spellsManager.cast_spell(spell_index)
-			attack_pressed = true
-			state = Player_State.ATTACK
-			spell_index = 0
-			cast_spell_state(spell)
+		spell_index = 0
+		cast_spell_state()
 	if Input.is_action_just_pressed("cast_spell_2"):
 		state = Player_State.ATTACK
 		spell_index = 1
@@ -96,7 +90,14 @@ func idle_state():
 	# Move the character
 	move_and_slide()
 
-func cast_spell_state(spell: Spell):
+func cast_spell_state():
+	var spell: Spell = spellsManager.get_spell(spell_index)
+	
+	if not spellsManager.is_spell_on_cooldown(spell.name):
+		spellsManager.cast_spell(spell_index)
+		attack_pressed = true
+		state = Player_State.ATTACK
+		
 	velocity = velocity.move_toward(Vector2.ZERO, attack_friction)
 	target = position
 	move_and_slide()
