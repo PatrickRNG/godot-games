@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Movement
 @export var speed: float = 120
-@export var acceleration: float = 14
+@export var acceleration: float = 12
 @export var friction: float = 15
 @export var attack_friction: float = 8
 
@@ -12,6 +12,7 @@ extends CharacterBody2D
 # Nodes
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var spellsManager: SpellManager = $SpellManager
+@onready var itemManager: ItemManager = $ItemManager
 
 var direction: Vector2 = Vector2.ZERO
 var target: Vector2 = position

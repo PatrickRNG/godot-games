@@ -1,16 +1,46 @@
-[gd_scene load_steps=7 format=3 uid="uid://c63jwa3moxyfm"]
+[gd_scene load_steps=10 format=3 uid="uid://c63jwa3moxyfm"]
 
 [ext_resource type="Script" path="res://Items/BaseItem.gd" id="1_3royh"]
 [ext_resource type="Resource" uid="uid://siqwpq8k4pdj" path="res://Resources/HolyBeamGem.tres" id="2_440aw"]
 [ext_resource type="Texture2D" uid="uid://dmtftocjj0k77" path="res://Assets/items/books.png" id="2_ad4ya"]
-[ext_resource type="Script" path="res://Items/ItemLabelBg.gd" id="4_v57pt"]
+[ext_resource type="FontFile" uid="uid://bd1vffixts3ew" path="res://Assets/Fonts/m6x11.ttf" id="5_lhtjw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_11gai"]
 atlas = ExtResource("2_ad4ya")
 region = Rect2(1, 112, 13, 16)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nu2b"]
+bg_color = Color(0.0666667, 0.0666667, 0.0666667, 0.937255)
+border_width_left = 4
+border_width_top = 1
+border_width_right = 4
+border_color = Color(0.0666667, 0.0666667, 0.0666667, 0.937255)
+
+[sub_resource type="GDScript" id="GDScript_g82a5"]
+script/source = "extends PanelContainer
+
+@onready var label_node: Label = $ItemNameLabel
+
+func _ready():
+	# Update the size of the ColorRect based on the Label's text
+	pass
+
+func update_rect_size():
+	# Get the size of the Label's text
+	var label_size = label_node.custom_minimum_size
+	var new_label_x = (size.x - label_size.x) / 2
+	
+	# Set the size of the ColorRect to match the Label's text size
+	custom_minimum_size.x = new_label_x
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_q2dvp"]
+line_spacing = 0.0
+font_size = 6
+font_color = Color(0.960784, 0.745098, 0, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_hr8vy"]
-radius = 48.4691
+radius = 13.0
 
 [node name="BaseItem" type="Node2D"]
 script = ExtResource("1_3royh")
@@ -18,7 +48,7 @@ itemStats = ExtResource("2_440aw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -3)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.6, 0.6)
 texture = SubResource("AtlasTexture_11gai")
 
 [node name="Label" type="Control" parent="Sprite2D"]
@@ -37,34 +67,36 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="Sprite2D/Label"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.357143
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.357143
-offset_left = -20.0
-offset_top = -3.0
-offset_right = 60.0
-offset_bottom = 13.0
+anchor_bottom = 0.5
+offset_left = -15.5
+offset_top = -3.5
+offset_right = 15.5
+offset_bottom = 5.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-script = ExtResource("4_v57pt")
+theme_override_styles/panel = SubResource("StyleBoxFlat_7nu2b")
+script = SubResource("GDScript_g82a5")
 
-[node name="ItemNameLabel" type="RichTextLabel" parent="Sprite2D/Label/PanelContainer"]
+[node name="ItemNameLabel" type="Label" parent="Sprite2D/Label/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-bbcode_enabled = true
-text = "[center]item name[/center]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+theme_override_fonts/font = ExtResource("5_lhtjw")
+theme_override_font_sizes/font_size = 8
+text = "item name"
+label_settings = SubResource("LabelSettings_q2dvp")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Pickup_Radius" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup_Radius"]
-visible = false
+position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_hr8vy")
 
 [connection signal="body_entered" from="Pickup_Radius" to="." method="_on_pickup_radius_body_entered"]
+[connection signal="body_exited" from="Pickup_Radius" to="." method="_on_pickup_radius_body_exited"]
+[connection signal="input_event" from="Pickup_Radius" to="." method="_on_pickup_radius_input_event"]

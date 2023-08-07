@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://w6xb5nkrjppu"]
+[gd_scene load_steps=77 format=3 uid="uid://w6xb5nkrjppu"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_8vg7g"]
 [ext_resource type="Texture2D" uid="uid://cynjadk5q0ro2" path="res://Player/sprites/idle/ready_1.png" id="1_231l4"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bcdnyjrbu8q7w" path="res://Player/sprites/run/run_1.png" id="4_b1xsx"]
 [ext_resource type="Resource" uid="uid://cfotay8vvql6a" path="res://Scripts/Spells/HolySpell.tres" id="4_e3e4o"]
 [ext_resource type="Texture2D" uid="uid://chx6h574w1oju" path="res://Player/sprites/run/run_2.png" id="5_id8nq"]
+[ext_resource type="Script" path="res://Player/ItemManager.gd" id="5_tlaus"]
 [ext_resource type="Texture2D" uid="uid://b188raukhagyc" path="res://Player/sprites/run/run_3.png" id="6_goj8q"]
 [ext_resource type="Texture2D" uid="uid://dqa5pged4b0o4" path="res://Player/sprites/run/run_4.png" id="7_224wq"]
 [ext_resource type="Texture2D" uid="uid://no3dygpk6y7h" path="res://Player/sprites/run/run_5.png" id="8_dmn7o"]
@@ -929,6 +930,9 @@ stats = ExtResource("2_5cv8b")
 [node name="SpellManager" type="Node" parent="."]
 script = ExtResource("3_jil45")
 spell_slots = Array[Resource("res://Scripts/Spells/Spell_class.gd")]([ExtResource("4_e3e4o"), null, null])
+
+[node name="ItemManager" type="Node" parent="."]
+script = ExtResource("5_tlaus")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_231l4")
