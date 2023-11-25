@@ -11,7 +11,7 @@ var base_wait_time
 func _ready():
 	base_wait_time = $Timer.wait_time
 	$Timer.timeout.connect(on_timer_timeout)
-	GameEvents.ability_upgrades_added.connect(on_ability_upgrade_added)
+	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
 
 
 func on_timer_timeout():
